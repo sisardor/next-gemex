@@ -1,0 +1,39 @@
+{
+  "name": "hello-next",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "node server.js",
+    "build": "next build src",
+    "start": "NODE_ENV=production node server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "connected-react-router": "^5.0.1",
+    "es6-promise": "^4.2.5",
+    "express": "^4.16.4",
+    "immutable": "^4.0.0-rc.12",
+    "isomorphic-unfetch": "^3.0.0",
+    "next": "^7.0.2",
+    "next-redux-saga": "^3.0.0",
+    "next-redux-wrapper": "^2.0.0",
+    "react": "^16.6.3",
+    "react-dom": "^16.6.3",
+    "react-intl": "^2.7.2",
+    "react-redux": "^5.1.1",
+    "react-router": "^4.3.1",
+    "redux": "^4.0.1",
+    "redux-immutable": "^4.0.0",
+    "redux-saga": "^0.16.2",
+    "reselect": "^4.0.0",
+    "styled-components": "^4.1.1"
+  },
+  "devDependencies": {
+    "babel-plugin-styled-components": "^1.8.0",
+    "redux-devtools-extension": "^2.13.5"
+  }
+}
