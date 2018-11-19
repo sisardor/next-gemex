@@ -4,11 +4,18 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "echo \"Error: no test specified\" && exit 0",
     "dev": "node server.js",
     "build": "next build src",
-    "start": "NODE_ENV=production node server.js"
+    "start": "NODE_ENV=production node server.js",
+    "foo": "echo \"fooo\" && exit 0",
+    "bar": "echo \"bar\" && exit 0"
   },
+  "pre-commit": [
+    "foo",
+    "bar",
+    "test"
+  ],
   "keywords": [],
   "author": "",
   "license": "ISC",
@@ -28,12 +35,15 @@
     "react-router": "^4.3.1",
     "redux": "^4.0.1",
     "redux-immutable": "^4.0.0",
+    "redux-logger": "^3.0.6",
     "redux-saga": "^0.16.2",
     "reselect": "^4.0.0",
     "styled-components": "^4.1.1"
   },
   "devDependencies": {
+    "babel-plugin-module-resolver": "^3.1.1",
     "babel-plugin-styled-components": "^1.8.0",
+    "pre-commit": "^1.2.2",
     "redux-devtools-extension": "^2.13.5"
   }
 }
