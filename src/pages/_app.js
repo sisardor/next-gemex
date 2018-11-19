@@ -3,8 +3,6 @@ import React from 'react'
 import { Provider } from 'react-redux'
 import withRedux from 'next-redux-wrapper'
 import withReduxSaga from 'next-redux-saga'
-
-import createStore from '../store'
 import configureStore from '../configureStore';
 
 class MyApp extends App {
@@ -23,7 +21,7 @@ class MyApp extends App {
     if (typeof window !== 'undefined') {
       window.store = store
     }
-
+    console.log(store.getState().toJS());
     return (
       <Container>
         <Provider store={store}>
@@ -34,4 +32,5 @@ class MyApp extends App {
   }
 }
 
-export default withRedux(configureStore)(MyApp)
+// export default withRedux(configureStore)(MyApp)
+export default withRedux(configureStore)(withReduxSaga({ async: true })(MyApp))

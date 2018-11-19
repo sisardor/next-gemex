@@ -1,4 +1,5 @@
 import Header from '../Header/Loadable'
+import GlobalStyle from '../../global-styles';
 
 const layoutStyle = {
   margin: 20,
@@ -10,6 +11,7 @@ const Layout = (props) => (
   <div style={layoutStyle}>
     <Header />
     {props.children}
+    <GlobalStyle/>
   </div>
 )
 

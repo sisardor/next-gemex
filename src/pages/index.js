@@ -1,16 +1,33 @@
 import Link from 'next/link'
-
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import fetch from 'isomorphic-unfetch'
-import injectReducer from '../utils/injectReducer';
-import Layout from '../components/MyLayout'
+import injectReducer from 'utils/injectReducer';
+import { loadData } from 'containers/HomePage/actions'
+import Layout from 'components/MyLayout'
+import HomePage from 'containers/HomePage/Loadable';
+
 
 class Index extends React.Component {
+  static async getInitialProps (props) {
+    const { store, isServer } = props.ctx
+    store.dispatch(loadData())
+    return { isServer }
+  }
+
+  componentDidMount () {
+    this.props.dispatch(loadData())
+  }
+  fetchTest = () => {
+    console.log('test');
+    this.props.dispatch(loadData())
+  }
   render () {
     return (
       <Layout>
         <h1>Batman TV Shows</h1>
+        <button onClick={() => this.fetchTest()}>Fetch</button>
+        <HomePage/>
       </Layout>
     );
   }
@@ -24,6 +41,7 @@ class Index extends React.Component {
 import { fromJS } from 'immutable';
 import { createStructuredSelector } from 'reselect';
 import injectSaga from '../utils/injectSaga';
+// import reducer from 'containers/HomePage/reducer';
 
 const initialState = fromJS({});
 
@@ -55,13 +73,13 @@ const withConnect = connect(
   mapDispatchToProps,
 );
 
-const withReducer = injectReducer({ key: 'adminPage', reducer: adminPageReducer });
-const withSaga = injectSaga({ key: 'adminPage', saga: defaultSaga });
+// const withReducer = injectReducer({ key: 'home', reducer });
+// const withSaga = injectSaga({ key: 'adminPage', saga: defaultSaga });
 
 
 
 export default compose(
-  withReducer,
+  // withReducer,
   // withSaga,
   withConnect,
 )(Index)

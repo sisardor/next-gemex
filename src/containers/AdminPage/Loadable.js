@@ -4,5 +4,5 @@
  *
  */
 
- import dynamic from 'next/dynamic'
-  export default dynamic(() => import('./index'))
+import dynamic from 'next/dynamic'
+export default dynamic(() => import('./index'))

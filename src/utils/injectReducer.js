@@ -25,14 +25,12 @@ export default ({ key, reducer }) => WrappedComponent => {
 
     componentWillMount() {
       const { injectReducer } = this.injectors;
-      console.log(this);
       injectReducer(key, reducer);
     }
 
     injectors = getInjectors(this.context.store);
 
     render() {
-      console.log(this);
       return <WrappedComponent {...this.props} />;
     }
   }

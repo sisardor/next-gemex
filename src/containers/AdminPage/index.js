@@ -55,11 +55,11 @@ const withConnect = connect(
   mapDispatchToProps,
 );
 
-const withReducer = injectReducer({ key: 'adminPageXX', reducer });
-const withSaga = injectSaga({ key: 'adminPageXX', saga });
+// const withReducer = injectReducer({ key: 'adminPageXX', reducer });
+// const withSaga = injectSaga({ key: 'adminPageXX', saga });
 
 export default compose(
-  withReducer,
-  withSaga,
+  // withReducer,
+  // withSaga,
   withConnect,
 )(AdminPage);

@@ -1,12 +1,11 @@
-/**
- * Create the store with dynamic reducers
- */
-
 import { createStore, applyMiddleware, compose } from 'redux';
 import { fromJS } from 'immutable';
 import { routerMiddleware } from 'connected-react-router/immutable';
 import createSagaMiddleware from 'redux-saga';
+import logger from 'redux-logger'
 import createReducer from './reducers';
+import rootSaga from './sagas'
+
 
 const sagaMiddleware = createSagaMiddleware();
 
@@ -14,7 +13,7 @@ export default function configureStore(initialState = {}, history) {
   // Create the store with two middlewares
   // 1. sagaMiddleware: Makes redux-sagas work
   // 2. routerMiddleware: Syncs the location/URL path to the state
-  const middlewares = [sagaMiddleware, routerMiddleware(history)];
+  const middlewares = [sagaMiddleware, logger, routerMiddleware(history)];
 
   const enhancers = [applyMiddleware(...middlewares)];
 
@@ -34,10 +33,16 @@ export default function configureStore(initialState = {}, history) {
     composeEnhancers(...enhancers),
   );
 
+  store.runSagaTask = () => {
+    store.sagaTask = sagaMiddleware.run(rootSaga)
+  }
+
+  store.runSagaTask()
+
   // Extensions
-  store.runSaga = sagaMiddleware.run;
+  // store.runSaga = sagaMiddleware.run;
   store.injectedReducers = {}; // Reducer registry
-  store.injectedSagas = {}; // Saga registry
+  // store.injectedSagas = {}; // Saga registry
 
 
   return store;
