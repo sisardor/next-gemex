@@ -21,7 +21,7 @@ class MyApp extends App {
     if (typeof window !== 'undefined') {
       window.store = store
     }
-    console.log(store.getState().toJS());
+    // console.log(store.getState().toJS());
     return (
       <Container>
         <Provider store={store}>

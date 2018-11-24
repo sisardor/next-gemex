@@ -31,14 +31,17 @@ export class HomePage extends React.PureComponent {
   onRemove = () => {};
   render() {
     const { products = [] } = this.props
-    // console.log(this.props.products);
+    // console.log('HomePage',this.props.products);
     // const list = [];
-    const list = products.map((product, index) => (
-      <div key={index}>
-        <p>{product.name}</p>
-        {/*<img src={product.thumb} />*/}
-      </div>
-    ));
+    const list = products.map((product, index) =>{
+      // console.log(product.get('name'));
+      return (
+        <div key={index}>
+          <p>{product.get('name')}</p>
+          {/*<img src={product.thumb} />*/}
+        </div>
+      )
+    });
 
     return (
       <div className="container">

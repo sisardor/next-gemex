@@ -9,7 +9,8 @@
  * case YOUR_ACTION_CONSTANT:
  *   return state.set('yourStateVariable', true);
  */
-import { fromJS } from 'immutable';
+import Immutable, { fromJS } from 'immutable';
+// var Immutable = require('immutable');
 
 // import { CHANGE_USERNAME } from './constants';
 
@@ -17,15 +18,22 @@ import { fromJS } from 'immutable';
 export const initialState = fromJS({});
 
 function homeReducer(state = initialState, action) {
+  // if (state.get('products')) {
+  //   var x = fromJS(state.get('products'))
+  //   console.log('homeReducer', x.get(0).get('name'));
+  // }
+  // console.log('homeReducer', action.products);
+  // console.log('check',fromJS(state.get('products')) instanceof Immutable.List);
   switch (action.type) {
     // case 'CHANGE_USERNAME':
     //   // Delete prefixed '@' from the github username
     //   return state.set('username', action.name.replace(/@/gi, ''));
     case 'LOAD_REPOS_SUCCESS':
-    console.log(action, state);
-      return state
-        .set('products', action.products)
+      let _s = state
+        .set('products', fromJS(action.products))
         .set('loading', false);
+      // console.log('homeReducer', _s);
+      return _s
     default:
       return state;
   }

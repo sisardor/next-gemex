@@ -33,6 +33,7 @@
  * @return {object}      An action object with a type of LOAD_REPOS_SUCCESS passing the repos
  */
 export function productsLoaded(products) {
+  // console.log('home.actions', products);
   return {
     type: 'LOAD_REPOS_SUCCESS',
     products

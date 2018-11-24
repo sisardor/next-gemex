@@ -16,7 +16,7 @@ class Index extends React.Component {
   }
 
   componentDidMount () {
-    this.props.dispatch(loadData())
+    // this.props.dispatch(loadData())
   }
   fetchTest = () => {
     console.log('test');
