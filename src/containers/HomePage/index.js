@@ -15,7 +15,7 @@ import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import injectSaga from 'utils/injectSaga';
 import injectReducer from 'utils/injectReducer';
-
+import Wrapper from './Wrapper';
 import reducer from './reducer';
 // import saga from './saga';
 import { makeSelectProducts } from './selectors';
@@ -38,17 +38,17 @@ export class HomePage extends React.PureComponent {
       return (
         <div key={index}>
           <p>{product.get('name')}</p>
-          {/*<img src={product.thumb} />*/}
+          <img src={product.get('images')} />
         </div>
       )
     });
 
     return (
-      <div className="container">
+      <Wrapper className="container">
         <main className="content">
           <div className="grid-container">{list}</div>
         </main>
-      </div>
+      </Wrapper>
     );
   }
 }

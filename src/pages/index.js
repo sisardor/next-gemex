@@ -19,7 +19,6 @@ class Index extends React.Component {
     // this.props.dispatch(loadData())
   }
   fetchTest = () => {
-    console.log('test');
     this.props.dispatch(loadData())
   }
   render () {
@@ -27,7 +26,7 @@ class Index extends React.Component {
       <Layout>
         <h1>Batman TV Shows</h1>
         <button onClick={() => this.fetchTest()}>Fetch</button>
-        <HomePage/>
+        <HomePage />
       </Layout>
     );
   }
