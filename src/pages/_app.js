@@ -7,10 +7,12 @@ import configureStore from '../configureStore';
 
 class MyApp extends App {
   static async getInitialProps ({ Component, ctx }) {
+    // console.log(ctx);
+    // console.log('-----_app-------');
     let pageProps = {}
 
     if (Component.getInitialProps) {
-      pageProps = await Component.getInitialProps({ ctx })
+      pageProps = await Component.getInitialProps({ctx})
     }
 
     return { pageProps }

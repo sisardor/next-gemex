@@ -53,9 +53,10 @@ function ListingGrid(props) {
   let lis = props.list.map((component, i) => {
     return <Li style={{marginRight: 0}} key={i}>{component}</Li>
   })
-  return (
-    <Ul>{lis}</Ul>
-  );
+  // return <ul>
+  // <li>Applw</li>
+  // </ul>
+  return (<Ul>{lis}</Ul>);
 }
 
 ListingGrid.propTypes = {};

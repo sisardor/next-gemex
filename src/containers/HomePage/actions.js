@@ -20,6 +20,7 @@
    DECREMENT: 'DECREMENT',
    RESET: 'RESET',
    LOAD_DATA: 'LOAD_DATA',
+   FETCH_BY_ID: 'FETCH_BY_ID',
    LOAD_DATA_SUCCESS: 'LOAD_DATA_SUCCESS',
    START_CLOCK: 'START_CLOCK',
    TICK_CLOCK: 'TICK_CLOCK'
@@ -42,4 +43,12 @@ export function productsLoaded(products) {
 
 export function loadData () {
   return {type: actionTypes.LOAD_DATA}
+}
+
+export function fetch_By_Id (id) {
+  return {type: actionTypes.FETCH_BY_ID, id}
+}
+
+export function oneProductLoaded (product) {
+  return {type: 'ONE_LOAD_REPO_SUCCESS', product}
 }

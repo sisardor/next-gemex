@@ -27,7 +27,25 @@ export function* getRepos() {
   }
 }
 
+export function* getById(action) {
+  // Select username from store
+  console.log(action);
+  const id = '343'
+  const username = 'yield select(makeSelectUsername())';
+  const requestURL = `http://localhost:4000/api/Products/${id}`;
+  // console.log('Bingo !!');
+  try {
+    // Call our request helper (see 'utils/request')
+    const products = yield call(request, requestURL);
+    // console.log(products);
+    yield put(productsLoaded(products));
+  } catch (err) {
+    // yield put(repoLoadingError(err));
+  }
+}
+
 export default function* githubData() {
   // yield call(getRepos);
   yield takeLatest('LOAD_DATA', getRepos);
+  yield takeLatest('FETCH_BY_ID', getById);
 }

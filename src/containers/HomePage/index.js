@@ -14,7 +14,11 @@ import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import injectSaga from 'utils/injectSaga';
+
 import injectReducer from 'utils/injectReducer';
+import ListingGrid from 'components/ListingGrid';
+import ListingCard from 'components/ListingCard';
+
 import Wrapper from './Wrapper';
 import reducer from './reducer';
 // import saga from './saga';
@@ -31,22 +35,15 @@ export class HomePage extends React.PureComponent {
   onRemove = () => {};
   render() {
     const { products = [] } = this.props
-    // console.log('HomePage',this.props.products);
-    // const list = [];
+
     const list = products.map((product, index) =>{
-      // console.log(product.get('name'));
-      return (
-        <div key={index}>
-          <p>{product.get('name')}</p>
-          <img src={product.get('images')} />
-        </div>
-      )
+      return <ListingCard product={product.toJS()} />
     });
 
     return (
       <Wrapper className="container">
         <main className="content">
-          <div className="grid-container">{list}</div>
+          <div className="grid-container"><ListingGrid list={list}/></div>
         </main>
       </Wrapper>
     );
