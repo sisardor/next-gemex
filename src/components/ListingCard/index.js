@@ -21,7 +21,7 @@ import {
 
 /* eslint-disable react/prefer-stateless-function */
 class ListingCard extends React.PureComponent {
-  render() {  
+  render() {
     // return <p>XX</p>   href={`/listing/${this.props.product.id}`}
     return (<CardHolder>
         <Link
@@ -39,7 +39,7 @@ class ListingCard extends React.PureComponent {
             </ListingCardImg>
             <div>
               <P>{this.props.product.name}</P>
-              <P>{this.props.product.price}</P>
+              <P>{this.props.product.currency}${this.props.product.price}</P>
             </div>
           </a>
         </Link>

@@ -4,6 +4,7 @@ import es6promise from 'es6-promise'
 import 'isomorphic-unfetch'
 import { productsLoaded, oneProductLoaded } from 'containers/HomePage/actions';
 import request from 'utils/request';
+import qs from 'qs'
 
 es6promise.polyfill()
 
@@ -33,7 +34,12 @@ export function* getById(action) {
   // Select username from store
   const id = action.id
   const username = 'yield select(makeSelectUsername())';
-  const requestURL = `http://localhost:4000/api/Products/${id}`;
+  const filter = {
+    include: [ 'category', 'owner', 'tags']
+  }
+  let queryString = '?' + qs.stringify({ filter })
+
+  const requestURL = `http://localhost:4000/api/Products/${id}${queryString}`;
   // console.log('Bingo !!');
   try {
     // Call our request helper (see 'utils/request')
