@@ -5,6 +5,7 @@
  */
 
 import React from 'react';
+import Link from 'next/link'
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Helmet } from 'react-helmet';
@@ -40,6 +41,12 @@ export class ListingView extends React.Component {
         <p>{product.name}</p>
         <img src={product.images}/>
         <p>{product.price}</p>
+        <Link
+              as={product.category.url}
+              href={{ pathname: '/cat', query: { categoryId: product.category.id } }}
+        >
+          {product.category.url}
+        </Link>
         <pre>{JSON.stringify(product,null, 2)}</pre>
       </div>
     );

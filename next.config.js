@@ -1,5 +1,5 @@
 module.exports = {
-  useFileSystemPublicRoutes: false,
+  // useFileSystemPublicRoutes: false,
   // distDir: '../out',
   // pagesDirectory: '/src'
 }

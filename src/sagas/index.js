@@ -35,7 +35,7 @@ export function* getById(action) {
   const id = action.id
   const username = 'yield select(makeSelectUsername())';
   const filter = {
-    include: [ 'category', 'owner', 'tags']
+    include: [ 'category', 'owner', 'tags' ]
   }
   let queryString = '?' + qs.stringify({ filter })
 

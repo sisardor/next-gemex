@@ -30,11 +30,11 @@ app.prepare()
     app.render(req, res, actualPage, queryParams)
   })
 
-  server.get('/c/**', (req, res) => {
+  server.get('/cat/**', (req, res) => {
     console.log("-------");
     // console.log(req);
-    // console.log('req.query',req.query);
-    // console.log('req.params',req.params);
+    console.log('req.query', req.query);
+    console.log('req.params', req.params);
     const actualPage = '/market'
     const queryParams = Object.assign({}, req.query, req.params) //{ tag: req.params.tag }
     app.render(req, res, actualPage, queryParams)
