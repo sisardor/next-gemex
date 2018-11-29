@@ -6,8 +6,9 @@ import { connectRouter } from 'connected-react-router/immutable';
 
 import history from 'utils/history';
 import languageProviderReducer from 'containers/LanguageProvider/reducer';
-import reducer from 'containers/HomePage/reducer'
-import listingViewReducer from 'containers/ListingView/reducer'
+import reducer from 'containers/HomePage/reducer';
+import listingViewReducer from 'containers/ListingView/reducer';
+import marketViewReducer from 'containers/MarketView/reducer';
 // import rootReducer from './reducer'
 /**
  * Merges the main reducer with the router state and dynamically injected reducers
@@ -17,6 +18,7 @@ export default function createReducer(injectedReducers = {}) {
     language: languageProviderReducer,
     home: reducer,
     listingView: listingViewReducer,
+    marketView: marketViewReducer,
     ...injectedReducers,
   });
 

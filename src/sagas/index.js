@@ -58,3 +58,29 @@ function * rootSaga () {
 }
 
 export default rootSaga
+
+
+
+
+// // foo.js
+// export const fooSagas = [
+//   takeEvery("FOO_A", fooASaga),
+//   takeEvery("FOO_B", fooBSaga),
+// ]
+//
+// // bar.js
+// export const barSagas = [
+//   takeEvery("BAR_A", barASaga),
+//   takeEvery("BAR_B", barBSaga),
+// ];
+//
+// // index.js
+// import { fooSagas } from './foo';
+// import { barSagas } from './bar';
+//
+// export default function* rootSaga() {
+//   yield all([
+//     ...fooSagas,
+//     ...barSagas
+//   ])
+// }

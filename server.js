@@ -18,7 +18,25 @@ app.prepare()
   server.get('/listing/:id/*', (req, res) => {
     const actualPage = '/listing'
     const queryParams = { id: req.params.id }
-    console.log(actualPage, queryParams);
+    app.render(req, res, actualPage, queryParams)
+  })
+
+  server.get('/market/:tag', (req, res) => {
+    // console.log("-------");
+    // console.log('req.query',req.query);
+    // console.log('req.params',req.params);
+    const actualPage = '/market'
+    const queryParams = Object.assign({}, req.query, req.params) //{ tag: req.params.tag }
+    app.render(req, res, actualPage, queryParams)
+  })
+
+  server.get('/c/**', (req, res) => {
+    console.log("-------");
+    // console.log(req);
+    // console.log('req.query',req.query);
+    // console.log('req.params',req.params);
+    const actualPage = '/market'
+    const queryParams = Object.assign({}, req.query, req.params) //{ tag: req.params.tag }
     app.render(req, res, actualPage, queryParams)
   })
 
