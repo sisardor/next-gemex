@@ -21,6 +21,8 @@
    RESET: 'RESET',
    LOAD_DATA: 'LOAD_DATA',
    FETCH_BY_ID: 'FETCH_BY_ID',
+   CATEGORIES_LOADED: 'CATEGORIES_LOADED',
+   FETCH_CATEGORIES: 'FETCH_CATEGORIES',
    LOAD_DATA_SUCCESS: 'LOAD_DATA_SUCCESS',
    START_CLOCK: 'START_CLOCK',
    TICK_CLOCK: 'TICK_CLOCK'
@@ -47,6 +49,12 @@ export function loadData () {
 
 export function fetch_By_Id (id) {
   return {type: actionTypes.FETCH_BY_ID, id}
+}
+export function categoriesLoaded (categories) {
+  return {type: actionTypes.CATEGORIES_LOADED, categories}
+}
+export function fetchCategories () {
+  return {type: actionTypes.FETCH_CATEGORIES}
 }
 
 export function oneProductLoaded (product) {

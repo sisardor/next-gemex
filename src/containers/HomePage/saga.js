@@ -4,7 +4,7 @@
 
 import { call, put, select, takeLatest } from 'redux-saga/effects';
 // import { LOAD_REPOS } from 'containers/App/constants';
-import { productsLoaded } from './actions';
+import { productsLoaded, categoriesLoaded  } from './actions';
 
 import request from 'utils/request';
 // import { makeSelectUsername } from 'containers/HomePage/selectors';
@@ -27,6 +27,19 @@ export function* getRepos() {
   }
 }
 
+export function* fetchCategories() {
+  const requestURL = `http://localhost:4000/api/Categories`;
+  console.log('fetchCategories !!');
+  try {
+    // Call our request helper (see 'utils/request')
+    const categories = yield call(request, requestURL);
+    // console.log(products);
+    yield put(categoriesLoaded(categories));
+  } catch (err) {
+    // yield put(repoLoadingError(err));
+  }
+}
+
 export function* getById(action) {
   // Select username from store
   console.log(action);
@@ -43,6 +56,11 @@ export function* getById(action) {
     // yield put(repoLoadingError(err));
   }
 }
+
+
+export const categoriesSagas = [
+  takeLatest("FETCH_CATEGORIES", fetchCategories),
+]
 
 export default function* githubData() {
   // yield call(getRepos);

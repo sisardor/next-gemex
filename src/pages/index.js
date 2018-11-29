@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { compose } from 'redux';
 import fetch from 'isomorphic-unfetch'
 import injectReducer from 'utils/injectReducer';
-import { loadData } from 'containers/HomePage/actions'
+import { loadData, fetchCategories } from 'containers/HomePage/actions'
 import Layout from 'components/MyLayout'
 import HomePage from 'containers/HomePage/Loadable';
 
@@ -12,6 +12,7 @@ class Index extends React.Component {
   static async getInitialProps (props) {
     const { store, isServer } = props.ctx
     store.dispatch(loadData())
+    store.dispatch(fetchCategories())
     return { isServer }
   }
 

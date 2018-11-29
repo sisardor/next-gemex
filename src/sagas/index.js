@@ -3,6 +3,7 @@ import {all, call, put, take, takeLatest} from 'redux-saga/effects'
 import es6promise from 'es6-promise'
 import 'isomorphic-unfetch'
 import { productsLoaded, oneProductLoaded } from 'containers/HomePage/actions';
+import { categoriesSagas } from 'containers/HomePage/saga';
 import request from 'utils/request';
 import qs from 'qs'
 
@@ -35,7 +36,7 @@ export function* getById(action) {
   const id = action.id
   const username = 'yield select(makeSelectUsername())';
   const filter = {
-    include: [ 'category', 'owner', 'tags' ]
+    include: [ 'category', 'owner' ]
   }
   let queryString = '?' + qs.stringify({ filter })
 
@@ -54,6 +55,7 @@ function * rootSaga () {
   yield all([
     yield takeLatest('LOAD_DATA', getRepos),
     yield takeLatest('FETCH_BY_ID', getById),
+    ...categoriesSagas
   ])
 }
 

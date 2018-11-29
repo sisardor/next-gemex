@@ -34,6 +34,9 @@ function homeReducer(state = initialState, action) {
         .set('loading', false);
       // console.log('homeReducer', _s);
       return _s
+    case 'CATEGORIES_LOADED':
+      console.log('categories loaded', action);
+      return state
     default:
       return state;
   }
