@@ -9,6 +9,7 @@ import languageProviderReducer from 'containers/LanguageProvider/reducer';
 import reducer from 'containers/HomePage/reducer';
 import listingViewReducer from 'containers/ListingView/reducer';
 import marketViewReducer from 'containers/MarketView/reducer';
+import topNavigationReducer from 'components/TopNavigation/reducer';
 
 /**
  * Merges the main reducer with the router state and dynamically injected reducers
@@ -19,6 +20,7 @@ export default function createReducer(injectedReducers = {}) {
     home: reducer,
     listingView: listingViewReducer,
     marketView: marketViewReducer,
+    topNavigation: topNavigationReducer,
     ...injectedReducers,
   });
 

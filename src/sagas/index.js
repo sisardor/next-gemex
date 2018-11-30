@@ -5,7 +5,8 @@ import qs from 'qs'
 import 'isomorphic-unfetch'
 import { productsLoaded, oneProductLoaded } from 'containers/HomePage/actions';
 import { categoriesSagas } from 'containers/HomePage/saga';
-import { listingViewSagas } from 'containers/ListingView/saga'
+import { listingViewSagas } from 'containers/ListingView/saga';
+import { topNavigationSagas } from 'components/TopNavigation/saga';
 import request from 'utils/request';
 
 
@@ -15,7 +16,8 @@ es6promise.polyfill()
 function * rootSaga () {
   yield all([
     ...categoriesSagas,
-    ...listingViewSagas
+    ...listingViewSagas,
+    ...topNavigationSagas
   ])
 }
 

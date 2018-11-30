@@ -3,9 +3,10 @@ import { connect } from 'react-redux';
 import { compose } from 'redux';
 import fetch from 'isomorphic-unfetch'
 import injectReducer from 'utils/injectReducer';
-import { fetchListings, fetchCategories } from 'containers/HomePage/actions'
-import Layout from 'components/MyLayout'
-import HomePage from 'containers/HomePage/Loadable';
+import { fetchListings } from 'containers/HomePage/actions';
+import { fetchCategories } from 'components/TopNavigation/actions';
+import Layout from 'components/MyLayout';
+import HomePage from 'containers/HomePage/Loadable';;
 
 
 class Index extends React.Component {

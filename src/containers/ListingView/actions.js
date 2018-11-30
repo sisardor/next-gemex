@@ -9,7 +9,7 @@ export function defaultAction() {
   return {type: cons.DEFAULT_ACTION};
 }
 
-export function one_listing_loaded (product) {
+export function oneListingLoaded (product) {
   return {type: cons.ONE_LISTING_LOADED, product}
 }
 
