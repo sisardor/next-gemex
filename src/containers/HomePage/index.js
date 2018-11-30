@@ -14,21 +14,13 @@ import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import injectSaga from 'utils/injectSaga';
-
 import injectReducer from 'utils/injectReducer';
 import ListingGrid from 'components/ListingGrid';
 import ListingCard from 'components/ListingCard';
-
 import Wrapper from './Wrapper';
 import reducer from './reducer';
-// import saga from './saga';
 import { makeSelectProducts } from './selectors';
 
-// import { FormattedMessage } from 'react-intl';
-// import messages from './messages';
-// import LoginForm from 'components/LoginForm/Loadable';
-// import { Card, Tag, Elevation } from '@blueprintjs/core';
-// import products from './products.json';
 
 /* eslint-disable react/prefer-stateless-function */
 export class HomePage extends React.PureComponent {
@@ -43,7 +35,7 @@ export class HomePage extends React.PureComponent {
     return (
       <Wrapper className="container">
         <main className="content">
-          <div className="grid-container"><ListingGrid list={list}/></div>
+          <div className="grid-container" style={{width:1096}}><ListingGrid list={list}/></div>
         </main>
       </Wrapper>
     );

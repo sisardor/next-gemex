@@ -14,7 +14,7 @@ export default function configureStore(initialState = {}, history) {
   // 1. sagaMiddleware: Makes redux-sagas work
   // 2. routerMiddleware: Syncs the location/URL path to the state
   const middlewares = [sagaMiddleware,
-    // logger, 
+    // logger,
     routerMiddleware(history)];
 
   const enhancers = [applyMiddleware(...middlewares)];
@@ -42,10 +42,7 @@ export default function configureStore(initialState = {}, history) {
   store.runSagaTask()
 
   // Extensions
-  // store.runSaga = sagaMiddleware.run;
   store.injectedReducers = {}; // Reducer registry
-  // store.injectedSagas = {}; // Saga registry
-
 
   return store;
 }

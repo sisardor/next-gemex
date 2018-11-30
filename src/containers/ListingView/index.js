@@ -12,18 +12,15 @@ import { Helmet } from 'react-helmet';
 import { FormattedMessage } from 'react-intl';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
-
 import injectSaga from 'utils/injectSaga';
 import injectReducer from 'utils/injectReducer';
 import makeSelectListingView from './selectors';
 import reducer from './reducer';
-// import saga from './saga';
 import messages from './messages';
 
 /* eslint-disable react/prefer-stateless-function */
 export class ListingView extends React.Component {
   render() {
-    // console.log(this.props);
     let product = {}, name=''
     if (!this.props.listingView.isLoading) {
       product = this.props.listingView[this.props.productId];
@@ -45,7 +42,9 @@ export class ListingView extends React.Component {
               as={product.category.url}
               href={{ pathname: '/cat', query: { categoryId: product.category.id } }}
         >
+          <a>
           {product.category.url}
+          </a>
         </Link>
         <pre>{JSON.stringify(product,null, 2)}</pre>
       </div>

@@ -9,7 +9,7 @@ import languageProviderReducer from 'containers/LanguageProvider/reducer';
 import reducer from 'containers/HomePage/reducer';
 import listingViewReducer from 'containers/ListingView/reducer';
 import marketViewReducer from 'containers/MarketView/reducer';
-// import rootReducer from './reducer'
+
 /**
  * Merges the main reducer with the router state and dynamically injected reducers
  */

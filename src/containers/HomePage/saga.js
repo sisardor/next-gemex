@@ -3,24 +3,15 @@
  */
 
 import { call, put, select, takeLatest } from 'redux-saga/effects';
-// import { LOAD_REPOS } from 'containers/App/constants';
 import { productsLoaded, categoriesLoaded  } from './actions';
-
+import * as cons from './constants';
 import request from 'utils/request';
-// import { makeSelectUsername } from 'containers/HomePage/selectors';
 
-/**
- * Github repos request/response handler
- */
+
 export function* getRepos() {
-  // Select username from store
-  const username = 'yield select(makeSelectUsername())';
   const requestURL = `http://localhost:4000/api/Products`;
-  // console.log('Bingo !!');
   try {
-    // Call our request helper (see 'utils/request')
     const products = yield call(request, requestURL);
-    // console.log(products);
     yield put(productsLoaded(products));
   } catch (err) {
     // yield put(repoLoadingError(err));
@@ -29,29 +20,9 @@ export function* getRepos() {
 
 export function* fetchCategories() {
   const requestURL = `http://localhost:4000/api/Categories`;
-  console.log('fetchCategories !!');
   try {
-    // Call our request helper (see 'utils/request')
     const categories = yield call(request, requestURL);
-    // console.log(products);
     yield put(categoriesLoaded(categories));
-  } catch (err) {
-    // yield put(repoLoadingError(err));
-  }
-}
-
-export function* getById(action) {
-  // Select username from store
-  console.log(action);
-  const id = '343'
-  const username = 'yield select(makeSelectUsername())';
-  const requestURL = `http://localhost:4000/api/Products/${id}`;
-  // console.log('Bingo !!');
-  try {
-    // Call our request helper (see 'utils/request')
-    const products = yield call(request, requestURL);
-    // console.log(products);
-    yield put(productsLoaded(products));
   } catch (err) {
     // yield put(repoLoadingError(err));
   }
@@ -59,11 +30,8 @@ export function* getById(action) {
 
 
 export const categoriesSagas = [
-  takeLatest("FETCH_CATEGORIES", fetchCategories),
+  takeLatest(cons.FETCH_CATEGORIES, fetchCategories),
+  takeLatest(cons.FETCH_LISTINGS, getRepos)
 ]
 
-export default function* githubData() {
-  // yield call(getRepos);
-  yield takeLatest('LOAD_DATA', getRepos);
-  yield takeLatest('FETCH_BY_ID', getById);
-}
+export default function* githubData() {}
