@@ -1,13 +1,13 @@
 import { createSelector } from 'reselect';
 import { initialState } from './reducer';
 
-const selectHome = state => state.get('topNavigation', initialState);
+const selectNav = state => state.get('topNavigation', initialState);
 
 
 // const makeSelectCurrentUser = () =>
 //   createSelector(selectGlobal, globalState => globalState.get('currentUser'));
 
-const makeSelectProducts = () =>
-  createSelector(selectHome, homeState => homeState.get('products'));
+const makeSelectCategories = () =>
+  createSelector(selectNav, state => state.get('categories'));
 
-export { selectHome, makeSelectProducts };
+export { selectNav, makeSelectCategories };

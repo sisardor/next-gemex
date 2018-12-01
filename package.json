@@ -31,6 +31,7 @@
     "next": "^7.0.2",
     "next-redux-saga": "^3.0.0",
     "next-redux-wrapper": "^2.0.0",
+    "next-seo": "^1.2.0",
     "next-url-prettifier": "^1.4.0",
     "qs": "^6.6.0",
     "query-string": "^6.2.0",
