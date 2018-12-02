@@ -5,6 +5,7 @@ import { Provider } from 'react-redux'
 import withRedux from 'next-redux-wrapper'
 import withReduxSaga from 'next-redux-saga'
 import configureStore from '../configureStore';
+import { fetchCategories } from 'components/TopNavigation/actions';
 
 const DEFAULT_SEO = {
   title: 'Gemex home page',
@@ -48,6 +49,7 @@ class MyApp extends App {
     if (Component.getInitialProps) {
       pageProps = await Component.getInitialProps({ctx})
     }
+    ctx.store.dispatch(fetchCategories())
 
     return { pageProps }
   }
