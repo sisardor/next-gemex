@@ -26,12 +26,12 @@ class Index extends React.Component {
   render () {
     return (
       <Layout>
-        <h1>Batman TV Shows</h1>
+        {/*<h1>Batman TV Shows</h1>
         <form method='GET' action='/greeting'>
           Name: <input name='name' />
           <input type='submit' />
         </form>
-        <button onClick={() => this.fetchTest()}>Fetch</button>
+        <button onClick={() => this.fetchTest()}>Fetch</button>*/}
         <HomePage />
       </Layout>
     );

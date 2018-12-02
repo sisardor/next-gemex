@@ -20,17 +20,19 @@ class TopNavigation extends React.PureComponent {
     console.log(this.props.categories.toJS());
     let navs = this.props.categories.map((nav, i) => {
       return (
-        <p key={i}>
-          <Link href={nav.get('url')}>
+        <li key={i}>
+          <Link href={'/cat' + nav.get('path')}>
             <a>
               {nav.get('name')}
             </a>
           </Link>
-        </p>
+        </li>
       );
     })
     return (
-      <div>{navs}</div>
+      <div>
+        <ul>{navs}</ul>
+      </div>
     );
   }
 }
