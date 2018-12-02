@@ -32,9 +32,9 @@ app.prepare()
 
   server.get('/cat/**', (req, res) => {
     console.log("-------");
-    // console.log(req);
+    console.log(req);
     console.log('req.query', req.query);
-    console.log('req.params', req.params);
+    console.log('req.params', req.params['0']);
     const actualPage = '/market'
     const queryParams = Object.assign({}, req.query, req.params) //{ tag: req.params.tag }
     app.render(req, res, actualPage, queryParams)
