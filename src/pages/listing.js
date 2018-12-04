@@ -14,7 +14,7 @@ Listing.getInitialProps = async function ({ ctx }) {
   const { id } = ctx.query
   // console.log(ctx);
   store.dispatch(fetchListingById(id))
-  console.log(`Fetched show: ${id}`)
+  // console.log(`Fetched show: ${id}`)
   return { id }
 }
 

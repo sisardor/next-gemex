@@ -7,6 +7,7 @@ import { productsLoaded, oneProductLoaded } from 'containers/HomePage/actions';
 import { categoriesSagas } from 'containers/HomePage/saga';
 import { listingViewSagas } from 'containers/ListingView/saga';
 import { topNavigationSagas } from 'components/TopNavigation/saga';
+import { marketViewSagas } from 'containers/MarketView/saga';
 import request from 'utils/request';
 
 
@@ -17,7 +18,8 @@ function * rootSaga () {
   yield all([
     ...categoriesSagas,
     ...listingViewSagas,
-    ...topNavigationSagas
+    ...topNavigationSagas,
+    ...marketViewSagas
   ])
 }
 

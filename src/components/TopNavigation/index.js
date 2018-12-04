@@ -17,11 +17,13 @@ import { makeSelectCategories } from './selectors';
 /* eslint-disable react/prefer-stateless-function */
 class TopNavigation extends React.PureComponent {
   render() {
-    console.log(this.props.categories.toJS());
+    // console.log(this.props.categories.toJS());
     let navs = this.props.categories.map((nav, i) => {
+      let path = nav.get('path');
+      let href = '/cat/' + path.replace(/\./g, '/')
       return (
         <li key={i}>
-          <Link href={'/cat' + nav.get('path')}>
+          <Link href={href}>
             <a>
               {nav.get('name')}
             </a>

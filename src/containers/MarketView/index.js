@@ -12,10 +12,12 @@ import { Helmet } from 'react-helmet';
 import { FormattedMessage } from 'react-intl';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
-
+import ListingGrid from 'components/ListingGrid';
+import ListingCard from 'components/ListingCard';
 import injectSaga from 'utils/injectSaga';
 import injectReducer from 'utils/injectReducer';
 import makeSelectMarketView from './selectors';
+import { makeSelectCatProducts } from './selectors';
 // import reducer from './reducer';
 // import saga from './saga';
 import messages from './messages';
@@ -23,6 +25,16 @@ import messages from './messages';
 /* eslint-disable react/prefer-stateless-function */
 export class MarketView extends React.Component {
   render() {
+    console.log(this.props.marketview);
+    console.log(this.props);
+    let list = []
+    if (this.props.marketview) {
+      let products = this.props.marketview.get('products')
+      list = products.map((product, index) =>{
+        return <ListingCard product={product.toJS()} />
+      });
+    }
+    console.log(list);
     return (
       <div>
         <Head>
@@ -33,7 +45,9 @@ export class MarketView extends React.Component {
             content='initial-scale=1.0, width=device-width'
           />
         </Head>
-        hello
+        <main className="content">
+          <div className="grid-container" style={{width:1096}}><ListingGrid list={list}/></div>
+        </main>
       </div>
     );
   }
@@ -45,6 +59,7 @@ MarketView.propTypes = {
 
 const mapStateToProps = createStructuredSelector({
   marketview: makeSelectMarketView(),
+  prod: makeSelectCatProducts()
 });
 
 function mapDispatchToProps(dispatch) {

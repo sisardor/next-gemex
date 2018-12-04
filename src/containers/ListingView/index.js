@@ -29,6 +29,8 @@ export class ListingView extends React.Component {
     else {
       return <p>loading</p>
     }
+    let path = product.category.path
+    let href = '/cat/' + path.replace(/\./g, '/')
     return (
       <div>
         <Helmet>
@@ -39,11 +41,11 @@ export class ListingView extends React.Component {
         <img src={product.images}/>
         <p>{product.price}</p>
         <Link
-              as={product.category.url}
+              as={href}
               href={{ pathname: '/cat', query: { categoryId: product.category.id } }}
         >
           <a>
-          {product.category.url}
+          {href}
           </a>
         </Link>
         <pre>{JSON.stringify(product,null, 2)}</pre>

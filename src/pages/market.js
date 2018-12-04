@@ -4,7 +4,7 @@ import Layout from '../components/MyLayout'
 import fetch from 'isomorphic-unfetch'
 import MarketView from 'containers/MarketView/Loadable'
 import { fetch_By_Id } from 'containers/HomePage/actions'
-import { loadCategoryProducts } from 'containers/MarketView/actions'
+import { fetchCategoryProducts } from 'containers/MarketView/actions'
 
 const Market = (props) => {
   return (
@@ -18,10 +18,9 @@ const Market = (props) => {
 
 Market.getInitialProps = async function ({ ctx }) {
   const { store, isServer } = ctx
-  // console.log(ctx);
-  const query = ctx.query
-  const slug = "wedding-and-engagement"
-  store.dispatch(loadCategoryProducts(slug))
+  const query = ctx.query['0']
+  let path = query.replace(/\//g, '.')
+  store.dispatch(fetchCategoryProducts(path))
   return { query }
 }
 

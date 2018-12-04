@@ -10,6 +10,11 @@ export function defaultAction() {
   return {type: cons.DEFAULT_ACTION};
 }
 
-export function loadCategoryProducts (slug) {
-  return {type: cons.FETCH_CATEGORY_PRODUCTS, slug}
+export function fetchCategoryProducts(path) {
+  console.log('fetchCategoryProducts');
+  return {type:cons.FETCH_CATEGORY_PRODUCTS, path}
+}
+
+export function loadCategoryProducts (products) {
+  return {type: cons.LOADED_CATEGORY_PRODUCTS, products}
 }
