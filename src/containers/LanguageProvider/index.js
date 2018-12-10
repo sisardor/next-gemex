@@ -14,7 +14,7 @@ import { IntlProvider } from 'react-intl';
 
 import { makeSelectLocale } from './selectors';
 
-export class LanguageProvider extends React.PureComponent {
+export class LanguageProvider extends React.Component {
   // eslint-disable-line react/prefer-stateless-function
   render() {
     return (

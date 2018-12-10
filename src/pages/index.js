@@ -3,31 +3,34 @@ import { connect } from 'react-redux';
 import { compose } from 'redux';
 import fetch from 'isomorphic-unfetch'
 import injectReducer from 'utils/injectReducer';
-import { loadData } from 'containers/HomePage/actions'
-import Layout from 'components/MyLayout'
-import HomePage from 'containers/HomePage/Loadable';
+import { fetchListings } from 'containers/HomePage/actions';
+import Layout from 'components/MyLayout';
+import HomePage from 'containers/HomePage/Loadable';;
 
 
 class Index extends React.Component {
   static async getInitialProps (props) {
     const { store, isServer } = props.ctx
-    store.dispatch(loadData())
+    store.dispatch(fetchListings())
     return { isServer }
   }
 
   componentDidMount () {
-    // this.props.dispatch(loadData())
+    // this.props.dispatch(fetchListings())
   }
   fetchTest = () => {
-    console.log('test');
-    this.props.dispatch(loadData())
+    this.props.dispatch(fetchListings())
   }
   render () {
     return (
       <Layout>
-        <h1>Batman TV Shows</h1>
-        <button onClick={() => this.fetchTest()}>Fetch</button>
-        <HomePage/>
+        {/*<h1>Batman TV Shows</h1>
+        <form method='GET' action='/greeting'>
+          Name: <input name='name' />
+          <input type='submit' />
+        </form>
+        <button onClick={() => this.fetchTest()}>Fetch</button>*/}
+        <HomePage />
       </Layout>
     );
   }

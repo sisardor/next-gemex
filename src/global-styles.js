@@ -13,7 +13,16 @@ const GlobalStyle = createGlobalStyle`
     position:relative;
     padding-bottom:100px;
     overflow: hidden;
-    background: #e3e8ee;
+    // background: #e3e8ee;
+  }
+
+  * {
+    margin: 0;
+    padding: 0;
+  }
+
+  ul {
+    list-style: none;
   }
 `;
 export default GlobalStyle;

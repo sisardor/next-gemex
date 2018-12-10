@@ -9,7 +9,10 @@
     "build": "next build src",
     "start": "NODE_ENV=production node server.js",
     "foo": "echo \"fooo\" && exit 0",
-    "bar": "echo \"bar\" && exit 0"
+    "bar": "echo \"bar\" && exit 0",
+    "generate": "plop --plopfile internals/generators/index.js",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
   },
   "pre-commit": [
     "foo",
@@ -20,6 +23,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "compression": "^1.7.3",
     "connected-react-router": "^5.0.1",
     "es6-promise": "^4.2.5",
     "express": "^4.16.4",
@@ -28,8 +32,13 @@
     "next": "^7.0.2",
     "next-redux-saga": "^3.0.0",
     "next-redux-wrapper": "^2.0.0",
+    "next-seo": "^1.2.0",
+    "next-url-prettifier": "^1.4.0",
+    "qs": "^6.6.0",
+    "query-string": "^6.2.0",
     "react": "^16.6.3",
     "react-dom": "^16.6.3",
+    "react-helmet": "^5.2.0",
     "react-intl": "^2.7.2",
     "react-redux": "^5.1.1",
     "react-router": "^4.3.1",
@@ -41,9 +50,18 @@
     "styled-components": "^4.1.1"
   },
   "devDependencies": {
+    "@babel/core": "^7.1.6",
+    "@storybook/addon-actions": "^4.0.9",
+    "@storybook/addon-links": "^4.0.9",
+    "@storybook/addon-notes": "^4.0.8",
+    "@storybook/addon-viewport": "^4.0.9",
+    "@storybook/addons": "^4.0.9",
+    "@storybook/react": "^4.0.9",
+    "babel-loader": "^8.0.4",
     "babel-plugin-module-resolver": "^3.1.1",
     "babel-plugin-styled-components": "^1.8.0",
+    "plop": "^2.1.0",
     "pre-commit": "^1.2.2",
-    "redux-devtools-extension": "^2.13.5"
+    "redux-devtools-extension": "^2.13.6"
   }
 }

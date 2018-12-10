@@ -14,16 +14,8 @@
  *        return { type: YOUR_ACTION_CONSTANT, var: var }
  *    }
  */
- export const actionTypes = {
-   FAILURE: 'FAILURE',
-   INCREMENT: 'INCREMENT',
-   DECREMENT: 'DECREMENT',
-   RESET: 'RESET',
-   LOAD_DATA: 'LOAD_DATA',
-   LOAD_DATA_SUCCESS: 'LOAD_DATA_SUCCESS',
-   START_CLOCK: 'START_CLOCK',
-   TICK_CLOCK: 'TICK_CLOCK'
- }
+import * as cons from './constants';
+
 /**
  * Dispatched when the repositories are loaded by the request saga
  *
@@ -33,13 +25,9 @@
  * @return {object}      An action object with a type of LOAD_REPOS_SUCCESS passing the repos
  */
 export function productsLoaded(products) {
-  // console.log('home.actions', products);
-  return {
-    type: 'LOAD_REPOS_SUCCESS',
-    products
-  };
+  return {type: cons.LISTINGS_LOADED, products};
 }
 
-export function loadData () {
-  return {type: actionTypes.LOAD_DATA}
+export function fetchListings () {
+  return {type: cons.FETCH_LISTINGS}
 }

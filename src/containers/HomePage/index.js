@@ -15,40 +15,29 @@ import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import injectSaga from 'utils/injectSaga';
 import injectReducer from 'utils/injectReducer';
-
+import ListingGrid from 'components/ListingGrid';
+import ListingCard from 'components/ListingCard';
+import Wrapper from './Wrapper';
 import reducer from './reducer';
-// import saga from './saga';
 import { makeSelectProducts } from './selectors';
 
-// import { FormattedMessage } from 'react-intl';
-// import messages from './messages';
-// import LoginForm from 'components/LoginForm/Loadable';
-// import { Card, Tag, Elevation } from '@blueprintjs/core';
-// import products from './products.json';
 
 /* eslint-disable react/prefer-stateless-function */
-export class HomePage extends React.PureComponent {
+export class HomePage extends React.Component {
   onRemove = () => {};
   render() {
     const { products = [] } = this.props
-    // console.log('HomePage',this.props.products);
-    // const list = [];
+
     const list = products.map((product, index) =>{
-      // console.log(product.get('name'));
-      return (
-        <div key={index}>
-          <p>{product.get('name')}</p>
-          {/*<img src={product.thumb} />*/}
-        </div>
-      )
+      return <ListingCard product={product.toJS()} />
     });
 
     return (
-      <div className="container">
+      <Wrapper className="container">
         <main className="content">
-          <div className="grid-container">{list}</div>
+          <div className="grid-container" style={{width:1096}}><ListingGrid list={list}/></div>
         </main>
-      </div>
+      </Wrapper>
     );
   }
 }
@@ -77,11 +66,9 @@ const withConnect = connect(
 );
 
 const withReducer = injectReducer({ key: 'home', reducer });
-// const withSaga = injectSaga({ key: 'home', saga });
 
 
 export default compose(
   withReducer,
-  // withSaga,
   withConnect,
 )(HomePage);

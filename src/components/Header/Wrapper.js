@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 const Wrapper = styled.header`
   display: flex;
-  background:red;
+  // background:red;
 `;
 
 export default Wrapper;

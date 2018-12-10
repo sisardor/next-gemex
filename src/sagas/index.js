@@ -1,38 +1,52 @@
 import {delay} from 'redux-saga'
 import {all, call, put, take, takeLatest} from 'redux-saga/effects'
 import es6promise from 'es6-promise'
+import qs from 'qs'
 import 'isomorphic-unfetch'
-import { productsLoaded } from 'containers/HomePage/actions';
+import { productsLoaded, oneProductLoaded } from 'containers/HomePage/actions';
+import { homepageSagas } from 'containers/HomePage/saga';
+import { listingViewSagas } from 'containers/ListingView/saga';
+import { topNavigationSagas } from 'components/TopNavigation/saga';
+import { marketViewSagas } from 'containers/MarketView/saga';
 import request from 'utils/request';
+
 
 es6promise.polyfill()
 
 
-
-// import { makeSelectUsername } from 'containers/HomePage/selectors';
-
-/**
- * Github repos request/response handler
- */
-export function* getRepos() {
-  // Select username from store
-  const username = 'yield select(makeSelectUsername())';
-  const requestURL = `http://localhost:4000/api/Products`;
-  try {
-    // Call our request helper (see 'utils/request')
-    const products = yield call(request, requestURL);
-    // console.log(products);
-    yield put(productsLoaded(products));
-  } catch (err) {
-    // yield put(repoLoadingError(err));
-  }
-}
-
-
 function * rootSaga () {
   yield all([
-    yield takeLatest('LOAD_DATA', getRepos),
+    ...homepageSagas,
+    ...listingViewSagas,
+    ...topNavigationSagas,
+    ...marketViewSagas
   ])
 }
 
 export default rootSaga
+
+
+
+
+// // foo.js
+// export const fooSagas = [
+//   takeEvery("FOO_A", fooASaga),
+//   takeEvery("FOO_B", fooBSaga),
+// ]
+//
+// // bar.js
+// export const barSagas = [
+//   takeEvery("BAR_A", barASaga),
+//   takeEvery("BAR_B", barBSaga),
+// ];
+//
+// // index.js
+// import { fooSagas } from './foo';
+// import { barSagas } from './bar';
+//
+// export default function* rootSaga() {
+//   yield all([
+//     ...fooSagas,
+//     ...barSagas
+//   ])
+// }
