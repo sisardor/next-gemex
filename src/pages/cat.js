@@ -22,10 +22,9 @@ const Market = (props) => {
 
 Market.getInitialProps = async function ({ ctx }) {
   const { store, isServer } = ctx
-  const query = ctx.query['0']
-  let path = query.replace(/\//g, '.')
+  let path = ctx.query.path
   store.dispatch(fetchCategoryProducts(path))
-  return { query }
+  return { path }
 }
 
 const mapStateToProps = createStructuredSelector({

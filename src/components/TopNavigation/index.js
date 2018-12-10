@@ -20,10 +20,11 @@ class TopNavigation extends React.PureComponent {
     // console.log(this.props.categories.toJS());
     let navs = this.props.categories.map((nav, i) => {
       let path = nav.get('path');
-      let href = '/cat/' + path.replace(/\./g, '/')
       return (
         <li key={i}>
-          <Link href={href}>
+          <Link
+            as={`/cat/${path.replace(/\./g, '/')}`}
+            href={{ pathname: '/cat', query: { path } }}>
             <a>
               {nav.get('name')}
             </a>

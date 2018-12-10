@@ -8,7 +8,7 @@ import * as cons from './constants';
 import request from 'utils/request';
 
 export function* getRepos() {
-  const requestURL = `http://localhost:4000/api/Products`;
+  const requestURL = `http://atomex.io:4000/api/Products`;
   try {
     const products = yield call(request, requestURL);
     yield put(productsLoaded(products));

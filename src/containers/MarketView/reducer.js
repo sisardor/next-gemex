@@ -19,6 +19,7 @@ function marketViewReducer(state = initialState, action) {
         .set('products', fromJS(action.products))
         .set('isLoading', false);
     case cons.LOADED_BREADCRUMBS:
+    console.log('marketViewReducer', action);
       return state
         .set('breadcrumbs', fromJS(action.breadcrumbs.breadcrumbs))
         .set('product_count', fromJS(action.breadcrumbs.product_count))

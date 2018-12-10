@@ -25,21 +25,20 @@ import messages from './messages';
 /* eslint-disable react/prefer-stateless-function */
 export class MarketView extends React.Component {
   render() {
-    console.log(this.props);
     let list = [], breadcrumbs = [], product_count = null
     if (this.props.marketview) {
-      let products = this.props.marketview.get('products')
+      let products = this.props.marketview.get('products') || []
       list = products.map((product, index) =>{
         return <ListingCard product={product.toJS()} />
       });
 
-      breadcrumbs = this.props.marketview.get('breadcrumbs').toJS()
+      breadcrumbs = this.props.marketview.get('breadcrumbs') || []
       product_count = this.props.marketview.get('product_count')
     }
 
     return (
       <div>
-        
+
         <Head>
           <title>This page has a title 🤔</title>
           <meta charSet='utf-8' />

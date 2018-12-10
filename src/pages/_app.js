@@ -19,8 +19,6 @@ const DEFAULT_SEO = {
     url: 'https://localhost:3000',
     title: 'Gemex',
     description: 'Gemex website sell geme stones',
-    defaultImageWidth: 340,
-    defaultImageHeight: 270,
     images: [
       {
         url: 'https://i.etsystatic.com/14828304/c/806/640/118/372/il/385d11/1399052046/il_340x270.1399052046_oj6y.jpg',

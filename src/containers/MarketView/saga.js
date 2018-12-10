@@ -8,7 +8,8 @@ export default function* defaultSaga() {}
 
 export function* getProductWithCatPath(action) {
   let path = action.path
-  const requestURL = `http://localhost:4000/api/categories/${path}/products`;
+  console.log('getProductWithCatPath');
+  const requestURL = `http://atomex.io:4000/api/categories/${path}/products`;
   try {
     const products = yield call(request, requestURL);
     yield put(loadCategoryProducts(products));
@@ -19,10 +20,9 @@ export function* getProductWithCatPath(action) {
 
 export function* getBreadcrumbs(action) {
   let path = action.path
-  const requestURL = `http://localhost:4000/api/categories/${path}/breadcrumbs`;
+  const requestURL = `http://atomex.io:4000/api/categories/${path}/breadcrumbs`;
   try {
     const breadcrumbs = yield call(request, requestURL);
-    console.log(breadcrumbs);
     yield put(loadBreadcrumbs(breadcrumbs));
   } catch (err) {
     // yield put(repoLoadingError(err));

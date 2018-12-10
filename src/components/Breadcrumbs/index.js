@@ -43,11 +43,14 @@ const Span = styled.span`
 function Breadcrumbs(props) {
   let count = <span>({props.count} items)</span>
   let lis = props.breadcrumbs.map((item, i) => {
-    let href = '/cat/' + item.path.replace(/\./g, '/')
+    let path = item.get('path')
     return (<Li key={i}>
       <Span/>
-      <Link href={href}>
-        <a>{item.name}</a>
+      <Link
+        as={`/cat/${path.replace(/\./g, '/')}`}
+        href={{ pathname: '/cat', query: { path } }}
+      >
+        <a>{item.get('name')}</a>
       </Link>
     </Li>);
   })

@@ -32,7 +32,6 @@ export class ListingView extends React.Component {
       return <p>loading</p>
     }
     let path = product.category.path
-    let href = '/cat/' + path.replace(/\./g, '/')
     return (
       <div>
         <NextSeo config={{
@@ -50,8 +49,6 @@ export class ListingView extends React.Component {
             site_name: 'Gemex',
             url: 'http://gemex.io' + this.props.originalUrl,
             description: name,
-            defaultImageWidth: 340,
-            defaultImageHeight: 270,
             images: [
               {
                 url: product.images,
@@ -67,11 +64,11 @@ export class ListingView extends React.Component {
         <img src={product.images} alt={product.name}/>
         <p>{product.price}</p>
         <Link
-              as={href}
-              href={{ pathname: '/cat', query: { categoryId: product.category.id } }}
+          as={`/cat/${path.replace(/\./g, '/')}`}
+          href={{ pathname: '/cat', query: { path } }}
         >
           <a>
-          {href}
+          {path}
           </a>
         </Link>
         <pre>{JSON.stringify(product,null, 2)}</pre>

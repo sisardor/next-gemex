@@ -37,7 +37,12 @@ app.prepare()
     // console.log('req.query', req.query);
     // console.log('req.params', req.params['0']);
     const actualPage = '/cat'
-    const queryParams = Object.assign({}, req.query, req.params) //{ tag: req.params.tag }
+    let queryParams = {}
+    try {
+      queryParams = { path: req.params['0'].replace(/\//g, '.') }
+    } catch (e) {
+
+    }
     app.render(req, res, actualPage, queryParams)
   })
 
