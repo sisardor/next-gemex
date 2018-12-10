@@ -23,7 +23,7 @@ import { makeSelectProducts } from './selectors';
 
 
 /* eslint-disable react/prefer-stateless-function */
-export class HomePage extends React.PureComponent {
+export class HomePage extends React.Component {
   onRemove = () => {};
   render() {
     const { products = [] } = this.props
@@ -66,11 +66,9 @@ const withConnect = connect(
 );
 
 const withReducer = injectReducer({ key: 'home', reducer });
-// const withSaga = injectSaga({ key: 'home', saga });
 
 
 export default compose(
   withReducer,
-  // withSaga,
   withConnect,
 )(HomePage);

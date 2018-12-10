@@ -5,17 +5,19 @@ import ListingView from 'containers/ListingView/Loadable'
 import { fetchListingById } from 'containers/ListingView/actions'
 
 const Listing = (props) => {
-  return (<Layout><ListingView productId={props.id}/></Layout>);
+  return (<Layout>
+    <ListingView productId={props.id} originalUrl={props.originalUrl}/>
+  </Layout>);
 }
 
 
 Listing.getInitialProps = async function ({ ctx }) {
   const { store, isServer } = ctx
+  const { originalUrl } = ctx.req || {}
+  console.log(ctx.req);
   const { id } = ctx.query
-  // console.log(ctx);
   store.dispatch(fetchListingById(id))
-  // console.log(`Fetched show: ${id}`)
-  return { id }
+  return { id, originalUrl }
 }
 
 export default Listing

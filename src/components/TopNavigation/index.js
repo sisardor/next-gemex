@@ -55,7 +55,7 @@ const withConnect = connect(
   mapDispatchToProps,
 );
 
-const withReducer = injectReducer({ key: 'home', reducer });
+const withReducer = injectReducer({ key: 'topNavigation', reducer });
 
 export default compose(
   withReducer,

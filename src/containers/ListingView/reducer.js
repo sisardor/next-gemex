@@ -12,8 +12,6 @@ export const initialState = fromJS({ isLoading: false });
 function listingViewReducer(state = initialState, action) {
 
   switch (action.type) {
-    case cons.DEFAULT_ACTION:
-      return state;
     case cons.ONE_LISTING_LOADED:
       return state
         .set(action.product.id, fromJS(action.product))

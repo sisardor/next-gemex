@@ -1,5 +1,6 @@
 const express = require('express')
 const next = require('next')
+const compression = require('compression')
 const Router = require('./routes').Router
 
 const dev = process.env.NODE_ENV !== 'production'
@@ -9,7 +10,7 @@ const handle = app.getRequestHandler()
 app.prepare()
 .then(() => {
   const server = express()
-
+  server.use(compression())
 
   Router.forEachPrettyPattern((page, pattern, defaultParams) => server.get(pattern, (req, res) =>
     app.render(req, res, `/${page}`, Object.assign({}, defaultParams, req.query, req.params))
@@ -31,11 +32,11 @@ app.prepare()
   })
 
   server.get('/cat/**', (req, res) => {
-    console.log("-------");
-    console.log(req);
-    console.log('req.query', req.query);
-    console.log('req.params', req.params['0']);
-    const actualPage = '/market'
+    // console.log("-------");
+    // console.log(req);
+    // console.log('req.query', req.query);
+    // console.log('req.params', req.params['0']);
+    const actualPage = '/cat'
     const queryParams = Object.assign({}, req.query, req.params) //{ tag: req.params.tag }
     app.render(req, res, actualPage, queryParams)
   })

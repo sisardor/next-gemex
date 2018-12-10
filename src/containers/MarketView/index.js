@@ -6,37 +6,40 @@
 
 import React from 'react';
 import Head from 'next/head'
+import NextSeo from 'next-seo';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Helmet } from 'react-helmet';
 import { FormattedMessage } from 'react-intl';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
+import Breadcrumbs from 'components/Breadcrumbs';
 import ListingGrid from 'components/ListingGrid';
 import ListingCard from 'components/ListingCard';
 import injectSaga from 'utils/injectSaga';
 import injectReducer from 'utils/injectReducer';
 import makeSelectMarketView from './selectors';
 import { makeSelectCatProducts } from './selectors';
-// import reducer from './reducer';
-// import saga from './saga';
 import messages from './messages';
 
 /* eslint-disable react/prefer-stateless-function */
 export class MarketView extends React.Component {
   render() {
-    console.log(this.props.marketview);
     console.log(this.props);
-    let list = []
+    let list = [], breadcrumbs = [], product_count = null
     if (this.props.marketview) {
       let products = this.props.marketview.get('products')
       list = products.map((product, index) =>{
         return <ListingCard product={product.toJS()} />
       });
+
+      breadcrumbs = this.props.marketview.get('breadcrumbs').toJS()
+      product_count = this.props.marketview.get('product_count')
     }
-    console.log(list);
+
     return (
       <div>
+        
         <Head>
           <title>This page has a title 🤔</title>
           <meta charSet='utf-8' />
@@ -46,7 +49,8 @@ export class MarketView extends React.Component {
           />
         </Head>
         <main className="content">
-          <div className="grid-container" style={{width:1096}}><ListingGrid list={list}/></div>
+          <Breadcrumbs breadcrumbs={breadcrumbs} count={product_count}/>
+          <div className="grid-container" style={{width:1096, clear:'both'}}><ListingGrid list={list}/></div>
         </main>
       </div>
     );
@@ -59,7 +63,6 @@ MarketView.propTypes = {
 
 const mapStateToProps = createStructuredSelector({
   marketview: makeSelectMarketView(),
-  prod: makeSelectCatProducts()
 });
 
 function mapDispatchToProps(dispatch) {
@@ -73,11 +76,6 @@ const withConnect = connect(
   mapDispatchToProps
 );
 
-// const withReducer = injectReducer({ key: 'marketView', reducer });
-// const withSaga = injectSaga({ key: 'marketView', saga });
-
 export default compose(
-  // withReducer,
-  // withSaga,
   withConnect
 )(MarketView);

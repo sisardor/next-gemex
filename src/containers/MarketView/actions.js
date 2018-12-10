@@ -11,10 +11,12 @@ export function defaultAction() {
 }
 
 export function fetchCategoryProducts(path) {
-  console.log('fetchCategoryProducts');
   return {type:cons.FETCH_CATEGORY_PRODUCTS, path}
 }
 
 export function loadCategoryProducts (products) {
   return {type: cons.LOADED_CATEGORY_PRODUCTS, products}
+}
+export function loadBreadcrumbs (breadcrumbs) {
+  return {type: cons.LOADED_BREADCRUMBS, breadcrumbs}
 }

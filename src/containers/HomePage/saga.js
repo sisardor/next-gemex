@@ -3,10 +3,9 @@
  */
 
 import { call, put, select, takeLatest } from 'redux-saga/effects';
-import { productsLoaded, categoriesLoaded  } from './actions';
+import { productsLoaded } from './actions';
 import * as cons from './constants';
 import request from 'utils/request';
-
 
 export function* getRepos() {
   const requestURL = `http://localhost:4000/api/Products`;
@@ -18,19 +17,8 @@ export function* getRepos() {
   }
 }
 
-export function* fetchCategories() {
-  const requestURL = `http://localhost:4000/api/Categories`;
-  try {
-    const categories = yield call(request, requestURL);
-    yield put(categoriesLoaded(categories));
-  } catch (err) {
-    // yield put(repoLoadingError(err));
-  }
-}
 
-
-export const categoriesSagas = [
-  takeLatest(cons.FETCH_CATEGORIES, fetchCategories),
+export const homepageSagas = [
   takeLatest(cons.FETCH_LISTINGS, getRepos)
 ]
 

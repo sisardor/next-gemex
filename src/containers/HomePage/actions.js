@@ -31,10 +31,3 @@ export function productsLoaded(products) {
 export function fetchListings () {
   return {type: cons.FETCH_LISTINGS}
 }
-
-export function categoriesLoaded (categories) {
-  return {type: cons.CATEGORIES_LOADED, categories}
-}
-export function fetchCategories () {
-  return {type: cons.FETCH_CATEGORIES}
-}

@@ -17,7 +17,7 @@ const selectListingViewDomain = state =>
  */
 
 const makeSelectListingView = () =>
-  createSelector(selectListingViewDomain, substate => substate.toJS());
+  createSelector(selectListingViewDomain, state => state.toJS());
 
 export default makeSelectListingView;
 export { selectListingViewDomain };

@@ -1,5 +1,6 @@
 import App, { Container } from 'next/app'
 import React from 'react'
+import Head from 'next/head'
 import NextSeo from 'next-seo';
 import { Provider } from 'react-redux'
 import withRedux from 'next-redux-wrapper'
@@ -9,6 +10,8 @@ import { fetchCategories } from 'components/TopNavigation/actions';
 
 const DEFAULT_SEO = {
   title: 'Gemex home page',
+  titleTemplate: `%s | Gemex`,
+  canonical: 'https://www.canonical.ie/c',
   description: 'Gemex website sell geme stones',
   openGraph: {
     type: 'website',
@@ -16,19 +19,13 @@ const DEFAULT_SEO = {
     url: 'https://localhost:3000',
     title: 'Gemex',
     description: 'Gemex website sell geme stones',
-    defaultImageWidth: 1200,
-    defaultImageHeight: 1200,
+    defaultImageWidth: 340,
+    defaultImageHeight: 270,
     images: [
       {
         url: 'https://i.etsystatic.com/14828304/c/806/640/118/372/il/385d11/1399052046/il_340x270.1399052046_oj6y.jpg',
-        width: 800,
-        height: 600,
-        alt: 'Og Image Alt',
-      },
-      {
-        url: 'https://i.etsystatic.com/14828304/c/806/640/118/372/il/385d11/1399052046/il_340x270.1399052046_oj6y.jpg',
-        width: 900,
-        height: 800,
+        width: 340,
+        height: 270,
         alt: 'Og Image Alt',
       }
     ],
@@ -63,6 +60,9 @@ class MyApp extends App {
     return (
       <Container>
         <NextSeo config={DEFAULT_SEO} />
+        <Head>
+          <meta name="google-site-verification" content="pin_mdYz2KNO0tCIb9-BbL40W7RJ0TpljsN-FJsI5hQ" />
+        </Head>
         <Provider store={store}>
           <Component {...pageProps} />
         </Provider>

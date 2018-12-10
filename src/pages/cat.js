@@ -1,6 +1,11 @@
 import {withRouter} from 'next/router'
 import Head from 'next/head'
-import Layout from '../components/MyLayout'
+import NextSeo from 'next-seo';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { compose } from 'redux';
+import { createStructuredSelector } from 'reselect';
+import Layout from 'components/MyLayout'
 import fetch from 'isomorphic-unfetch'
 import MarketView from 'containers/MarketView/Loadable'
 import { fetch_By_Id } from 'containers/HomePage/actions'
@@ -23,4 +28,21 @@ Market.getInitialProps = async function ({ ctx }) {
   return { query }
 }
 
-export default Market
+const mapStateToProps = createStructuredSelector({
+
+});
+
+function mapDispatchToProps(dispatch) {
+  return {
+    dispatch,
+  };
+}
+
+const withConnect = connect(
+  mapStateToProps,
+  mapDispatchToProps
+);
+
+export default compose(
+  withConnect
+)(Market);
