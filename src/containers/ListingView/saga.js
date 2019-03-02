@@ -15,7 +15,7 @@ export function* getById(action) {
   }
   let queryString = '?' + qs.stringify({ filter })
 
-  const requestURL = `http://atomex.io:4000/api/Products/${id}${queryString}`;
+  const requestURL = `http://localhost:3000/api/Products/${id}${queryString}`;
   try {
     const product = yield call(request, requestURL);
     yield put(oneListingLoaded(product));

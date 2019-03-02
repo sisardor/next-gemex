@@ -2,7 +2,7 @@ const express = require('express')
 const next = require('next')
 const compression = require('compression')
 const Router = require('./routes').Router
-
+const proxy = require('http-proxy-middleware')
 const dev = process.env.NODE_ENV !== 'production'
 const app = next({ dev, dir: './src' })
 const handle = app.getRequestHandler()
@@ -45,6 +45,8 @@ app.prepare()
     }
     app.render(req, res, actualPage, queryParams)
   })
+
+  server.use('/api', proxy({ target: 'http://atomex.io:4000', changeOrigin: true }))
 
   server.get('*', (req, res) => handle(req, res))
 

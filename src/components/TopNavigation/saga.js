@@ -8,7 +8,7 @@ import * as cons from './constants';
 export default function* defaultSaga() {}
 
 export function* fetchCategories() {
-  const requestURL = `http://atomex.io:4000/api/Categories`;
+  const requestURL = `http://localhost:3000/api/Categories`;
   try {
     const categories = yield call(request, requestURL);
     yield put(categoriesLoaded(categories));
