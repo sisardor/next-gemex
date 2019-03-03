@@ -3,6 +3,7 @@ import qs from 'qs';
 import request from 'utils/request';
 import { oneListingLoaded } from './actions';
 import * as cons from './constants';
+import { API_URL } from '../../utils/constants';
 
 // Individual exports for testing
 export default function* defaultSaga() {}
@@ -15,7 +16,7 @@ export function* getById(action) {
   }
   let queryString = '?' + qs.stringify({ filter })
 
-  const requestURL = `http://localhost:3000/api/Products/${id}${queryString}`;
+  const requestURL = `${API_URL}/api/Products/${id}${queryString}`;
   try {
     const product = yield call(request, requestURL);
     yield put(oneListingLoaded(product));

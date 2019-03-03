@@ -6,9 +6,10 @@ import { call, put, select, takeLatest } from 'redux-saga/effects';
 import { productsLoaded } from './actions';
 import * as cons from './constants';
 import request from 'utils/request';
+import { API_URL } from '../../utils/constants';
 
 export function* getRepos() {
-  const requestURL = `http://localhost:3000/api/Products`;
+  const requestURL = `${API_URL}/api/Products`;
   try {
     const products = yield call(request, requestURL);
     yield put(productsLoaded(products));

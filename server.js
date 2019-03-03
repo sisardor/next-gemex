@@ -1,5 +1,7 @@
-const express = require('express')
+// const express = require('express')
 const next = require('next')
+const nextAuth = require('next-auth')
+const nextAuthConfig = require('./auth/next-auth.config')
 const compression = require('compression')
 const Router = require('./routes').Router
 const proxy = require('http-proxy-middleware')
@@ -9,7 +11,20 @@ const handle = app.getRequestHandler()
 
 app.prepare()
 .then(() => {
-  const server = express()
+  // Load configuration and return config object
+  return nextAuthConfig()
+})
+.then(nextAuthOptions => {
+  // Pass Next.js App instance and NextAuth options to NextAuth
+  // Note We do not pass a port in nextAuthOptions, because we want to add some
+  // additional routes before Express starts (if you do pass a port, NextAuth
+  // tells NextApp to handle default routing and starts Express automatically).
+  return nextAuth(app, nextAuthOptions)
+})
+.then((nextAuthOptions) => {
+  const express = nextAuthOptions.express
+  const server = nextAuthOptions.expressApp
+  // const server = express()
   server.use(compression())
 
   Router.forEachPrettyPattern((page, pattern, defaultParams) => server.get(pattern, (req, res) =>
@@ -46,13 +61,13 @@ app.prepare()
     app.render(req, res, actualPage, queryParams)
   })
 
-  server.use('/api', proxy({ target: 'http://atomex.io:4000', changeOrigin: true }))
+  server.use('/api', proxy({ target: 'http://localhost:4000', changeOrigin: true }))
 
   server.get('*', (req, res) => handle(req, res))
 
-  server.listen(3000, (err) => {
+  server.listen(5000, (err) => {
     if (err) throw err
-    console.log('> Ready on http://localhost:3000')
+    console.log('> Ready on http://localhost:5000')
   })
 })
 .catch((ex) => {

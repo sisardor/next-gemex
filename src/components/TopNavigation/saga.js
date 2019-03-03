@@ -3,12 +3,13 @@ import qs from 'qs';
 import request from 'utils/request';
 import { categoriesLoaded } from './actions';
 import * as cons from './constants';
+import { API_URL } from '../../utils/constants';
 
 // Individual exports for testing
 export default function* defaultSaga() {}
 
 export function* fetchCategories() {
-  const requestURL = `http://localhost:3000/api/Categories`;
+  const requestURL = `${API_URL}/api/Categories`;
   try {
     const categories = yield call(request, requestURL);
     yield put(categoriesLoaded(categories));
