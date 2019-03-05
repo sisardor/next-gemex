@@ -8,12 +8,12 @@ import { NextAuth } from 'next-auth/client'
 export default class extends React.Component {
   static async getInitialProps({req}) {
     const session = await NextAuth.init({force: true, req: req})
-    console.log(session);
+    console.log('ath/callback',session);
     const cookies = new Cookies((req && req.headers.cookie) ? req.headers.cookie : null)
     // If the user is signed in, we look for a redirect URL cookie and send
     // them to that page, so that people signing in end up back on the page they
     // were on before signing in. Defaults to '/'.
-    let redirectTo = '/bar'
+    let redirectTo = '/'
     if (session.user) {
       // Read redirect URL to redirect to from cookies
       redirectTo = cookies.get('redirect_url') || redirectTo

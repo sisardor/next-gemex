@@ -5,14 +5,16 @@ import { NextAuth } from 'next-auth/client'
 export default class extends React.Component {
 
   static async getInitialProps({req, query}) {
+    console.log('auth/error.js');
+    console.log('query', query);
     const session =  await NextAuth.init({req});
     let props = {
       session: session,// await NextAuth.init({req}),// Add this.props.session to all pages
       lang: 'en' // Add a lang property to all pages for accessibility
     }
-    // props.action = query.action || null
-    // props.type = query.type || null
-    // props.service = query.service || null
+    props.action = query.action || null
+    props.type = query.type || null
+    props.service = query.service || null
     return props
   }
 
