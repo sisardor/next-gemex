@@ -104,5 +104,29 @@ module.exports = () => {
     })
   }
 
+  if (process.env.AMAZON_ID && process.env.AMAZON_SECRET) {
+    providers.push({
+      providerName: 'Amazon',
+      providerOptions: {
+        scope: ['profile']
+      },
+      Strategy: require('passport-amazon').Strategy,
+      strategyOptions: {
+        clientID: process.env.AMAZON_ID,
+        clientSecret: process.env.AMAZON_SECRET,
+        callbackURL: 'http://localhost:5000/auth/oauth/amazon/callback'
+      },
+      getProfile(profile) {
+        console.log('Amazon callback',profile);
+        // Normalize profile into one with {id, name, email} keys
+        return {
+          id: profile.id,
+          name: profile.displayName,
+          email: profile.emails[0].value
+        }
+      }
+    })
+  }
+
   return providers
 }

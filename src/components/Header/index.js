@@ -90,7 +90,6 @@ export function mapDispatchToProps(dispatch) {
 }
 
 const mapStateToProps = createStructuredSelector({
-  // categories: makeSelectCategories(),
   providers: makeSelectProviders(),
   session: makeSelectSession()
 });

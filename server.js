@@ -9,6 +9,8 @@ const dev = process.env.NODE_ENV !== 'production'
 const app = next({ dev, dir: './src' })
 const handle = app.getRequestHandler()
 
+require('dotenv').load()
+
 app.prepare()
 .then(() => {
   // Load configuration and return config object

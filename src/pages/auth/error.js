@@ -4,7 +4,7 @@ import { NextAuth } from 'next-auth/client'
 
 export default class extends React.Component {
 
-  static async getInitialProps({req, query}) {
+  static async getInitialProps({ctx: { query, req }}) {
     console.log('auth/error.js');
     console.log('query', query);
     const session =  await NextAuth.init({req});
