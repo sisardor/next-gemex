@@ -6,13 +6,16 @@ import injectReducer from 'utils/injectReducer';
 import { fetchListings } from 'containers/HomePage/actions';
 import Layout from 'components/MyLayout';
 import HomePage from 'containers/HomePage/Loadable';;
-
+import { NextAuth } from 'next-auth/client'
 
 class Index extends React.Component {
-  static async getInitialProps (props) {
-    const { store, isServer } = props.ctx
+  static async getInitialProps ({ctx, req}) {
+    const { store, isServer } = ctx
+
     store.dispatch(fetchListings())
-    return { isServer }
+    const session = await NextAuth.init({req});
+    console.log(session);
+    return { isServer, session }
   }
 
   componentDidMount () {
@@ -22,6 +25,7 @@ class Index extends React.Component {
     this.props.dispatch(fetchListings())
   }
   render () {
+    console.log(this.props);
     return (
       <Layout>
         {/*<h1>Batman TV Shows</h1>

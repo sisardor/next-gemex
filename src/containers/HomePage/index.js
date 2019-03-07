@@ -20,10 +20,11 @@ import ListingCard from 'components/ListingCard';
 import Wrapper from './Wrapper';
 import reducer from './reducer';
 import { makeSelectProducts } from './selectors';
-
+import { NextAuth } from 'next-auth/client'
 
 /* eslint-disable react/prefer-stateless-function */
 export class HomePage extends React.Component {
+  
   onRemove = () => {};
   render() {
     const { products = [] } = this.props

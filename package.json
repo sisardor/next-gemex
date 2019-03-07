@@ -6,6 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 0",
     "dev": "node server.js",
+    "dev2": "cross-env NODE_ENV=development PORT=5000 node server2.js",
     "build": "next build src",
     "start": "NODE_ENV=production node server.js",
     "foo": "echo \"fooo\" && exit 0",
@@ -72,6 +73,7 @@
     "babel-loader": "^8.0.4",
     "babel-plugin-module-resolver": "^3.1.1",
     "babel-plugin-styled-components": "^1.8.0",
+    "cross-env": "^5.2.0",
     "plop": "^2.1.0",
     "pre-commit": "^1.2.2",
     "redux-devtools-extension": "^2.13.6"

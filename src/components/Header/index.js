@@ -1,8 +1,10 @@
 import React from 'react';
+import Router from 'next/router'
 import Link from 'next/link'
 import Wrapper from './Wrapper';
 import ReactModal from 'react-modal';
 import { NextAuth } from 'next-auth/client'
+import Cookies from 'universal-cookie'
 
 ReactModal.setAppElement('#__next');
 
@@ -14,33 +16,35 @@ export default class Header extends React.Component {
 		super(props);
 
 		this.state = {
-      showModal: false
+      showModal: false,
+      session: {}
 		};
     this.handleOpenModal = this.handleOpenModal.bind(this);
     this.handleCloseModal = this.handleCloseModal.bind(this);
+    this.handleSignoutSubmit = this.handleSignoutSubmit.bind(this);
 	}
 
-  static async getInitialProps({req}) {
-    const session =  await NextAuth.init({req});
-    const providers = await NextAuth.providers({req})
-    console.log(providers);
-    return {
-      providers: null,
-      // providers: providers,
-      session: session,// await NextAuth.init({req}),// Add this.props.session to all pages
-      lang: 'en' // Add a lang property to all pages for accessibility
-    }
-  }
-
   async handleOpenModal() {
-    console.log(await NextAuth.providers());
+    // console.log('handleOpenModal',await NextAuth.init());
     this.setState({
+      session: this.state.session || await NextAuth.init(),
       providers: this.state.providers || await NextAuth.providers(),
       showModal: true
     });
   }
   handleCloseModal () {
     this.setState({ showModal: false });
+  }
+  async handleSignoutSubmit(event) {
+    event.preventDefault()
+
+    // Save current URL so user is redirected back here after signing out
+    const cookies = new Cookies()
+    cookies.set('redirect_url', window.location.pathname, { path: '/' })
+
+    await NextAuth.signout()
+    Router.push('/')
+    this.handleCloseModal()
   }
 
   render() {
@@ -63,6 +67,11 @@ export default class Header extends React.Component {
           >
             <button onClick={this.handleCloseModal}>Close Modal</button>
             <SignInButtons providers={this.state.providers}/>
+
+            <form id="signout" method="post" action="/auth/signout" onSubmit={this.handleSignoutSubmit}>
+              <input name="_csrf" type="hidden" value={this.state.session.csrfToken}/>
+              <button type="submit" block className="pl-4 rounded-0 text-left dropdown-item"><span className="icon ion-md-log-out mr-1"></span> Sign out</button>
+            </form>
 
         </ReactModal>
       </Wrapper>
