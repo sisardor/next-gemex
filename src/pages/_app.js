@@ -7,6 +7,7 @@ import withRedux from 'next-redux-wrapper'
 import withReduxSaga from 'next-redux-saga'
 import configureStore from '../configureStore';
 import { fetchCategories } from 'components/TopNavigation/actions';
+import { fetchAuthProviders, fetchAuthSession } from 'containers/HomePage/actions';
 
 const DEFAULT_SEO = {
   title: 'Gemex home page',
@@ -45,7 +46,8 @@ class MyApp extends App {
       pageProps = await Component.getInitialProps({ctx})
     }
     ctx.store.dispatch(fetchCategories())
-
+    ctx.store.dispatch(fetchAuthProviders())
+    ctx.store.dispatch(fetchAuthSession())
     return { pageProps }
   }
 

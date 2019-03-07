@@ -24,5 +24,18 @@ function homeReducer(state = initialState, action) {
       return state;
   }
 }
+function authReducer(state = fromJS({}), action) {
+  switch (action.type) {
+    case cons.AUTH_PROVIDERS_LOADED:
+      return state
+        .set('providers', fromJS(action.providers))
+    case cons.AUTH_SESSION_LOADED:
+      return state
+        .set('session', fromJS(action.session))
+    default:
+      return state;
+  }
+}
 
+export { authReducer }
 export default homeReducer;

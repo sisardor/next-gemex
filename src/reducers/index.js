@@ -6,7 +6,7 @@ import { connectRouter } from 'connected-react-router/immutable';
 
 import history from 'utils/history';
 import languageProviderReducer from 'containers/LanguageProvider/reducer';
-import reducer from 'containers/HomePage/reducer';
+import reducer, {authReducer} from 'containers/HomePage/reducer';
 import listingViewReducer from 'containers/ListingView/reducer';
 import marketViewReducer from 'containers/MarketView/reducer';
 import topNavigationReducer from 'components/TopNavigation/reducer';
@@ -21,6 +21,7 @@ export default function createReducer(injectedReducers = {}) {
     listingView: listingViewReducer,
     marketView: marketViewReducer,
     topNavigation: topNavigationReducer,
+    auth: authReducer,
     ...injectedReducers,
   });
 

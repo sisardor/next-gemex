@@ -19,16 +19,16 @@ import ListingGrid from 'components/ListingGrid';
 import ListingCard from 'components/ListingCard';
 import Wrapper from './Wrapper';
 import reducer from './reducer';
-import { makeSelectProducts } from './selectors';
+import { makeSelectProducts, makeSelectProviders } from './selectors';
 import { NextAuth } from 'next-auth/client'
 
 /* eslint-disable react/prefer-stateless-function */
 export class HomePage extends React.Component {
-  
+
   onRemove = () => {};
   render() {
-    const { products = [] } = this.props
-
+    const { products = [], providers } = this.props
+    console.log('HomePage#render', providers);
     const list = products.map((product, index) =>{
       return <ListingCard product={product.toJS()} />
     });
@@ -36,6 +36,7 @@ export class HomePage extends React.Component {
     return (
       <Wrapper className="container">
         <main className="content">
+          {JSON.stringify(providers)}
           <div className="grid-container" style={{width:1096}}><ListingGrid list={list}/></div>
         </main>
       </Wrapper>
@@ -56,6 +57,7 @@ export function mapDispatchToProps(dispatch) {
 const mapStateToProps = createStructuredSelector({
   // repos: makeSelectRepos(),
   products: makeSelectProducts(),
+  providers: makeSelectProviders()
   // loading: makeSelectLoading(),
   // error: makeSelectError(),
 });

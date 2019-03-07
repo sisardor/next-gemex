@@ -9,7 +9,6 @@ export default function* defaultSaga() {}
 
 export function* getProductWithCatPath(action) {
   let path = action.path
-  console.log('getProductWithCatPath');
   const requestURL = `${API_URL}/api/categories/${path}/products`;
   try {
     const products = yield call(request, requestURL);

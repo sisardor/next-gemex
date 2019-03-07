@@ -13,8 +13,10 @@ class Index extends React.Component {
     const { store, isServer } = ctx
 
     store.dispatch(fetchListings())
+
     const session = await NextAuth.init({req});
-    console.log(session);
+
+    console.log('Index#getInitialProps', session);
     return { isServer, session }
   }
 
@@ -25,7 +27,7 @@ class Index extends React.Component {
     this.props.dispatch(fetchListings())
   }
   render () {
-    console.log(this.props);
+
     return (
       <Layout>
         {/*<h1>Batman TV Shows</h1>
@@ -41,52 +43,4 @@ class Index extends React.Component {
 }
 
 
-
-
-
-
-import { fromJS } from 'immutable';
-import { createStructuredSelector } from 'reselect';
-import injectSaga from '../utils/injectSaga';
-// import reducer from 'containers/HomePage/reducer';
-
-const initialState = fromJS({});
-
-function adminPageReducer(state = initialState, action) {
-  switch (action.type) {
-    case 'DEFAULT_ACTION':
-      return state;
-    default:
-      return state;
-  }
-}
-
-function* defaultSaga() {
-  // See example in containers/HomePage/saga.js
-}
-
-const mapStateToProps = createStructuredSelector({
-  // adminpage: makeSelectAdminPage(),
-});
-
-function mapDispatchToProps(dispatch) {
-  return {
-    dispatch,
-  };
-}
-
-const withConnect = connect(
-  mapStateToProps,
-  mapDispatchToProps,
-);
-
-// const withReducer = injectReducer({ key: 'home', reducer });
-// const withSaga = injectSaga({ key: 'adminPage', saga: defaultSaga });
-
-
-
-export default compose(
-  // withReducer,
-  // withSaga,
-  withConnect,
-)(Index)
+export default Index

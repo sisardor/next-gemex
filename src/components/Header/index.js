@@ -1,17 +1,22 @@
 import React from 'react';
 import Router from 'next/router'
+import { compose } from 'redux';
+import { connect } from 'react-redux';
+import { createStructuredSelector } from 'reselect';
+import injectReducer from 'utils/injectReducer';
 import Link from 'next/link'
 import Wrapper from './Wrapper';
 import ReactModal from 'react-modal';
 import { NextAuth } from 'next-auth/client'
 import Cookies from 'universal-cookie'
+import { makeSelectProviders, makeSelectSession } from 'containers/HomePage/selectors';
 
 ReactModal.setAppElement('#__next');
 
 const linkStyle = {
   marginRight: 15
 }
-export default class Header extends React.Component {
+class Header extends React.Component {
   constructor(props) {
 		super(props);
 
@@ -19,16 +24,17 @@ export default class Header extends React.Component {
       showModal: false,
       session: {}
 		};
+    console.log('Header#constructor', props);
     this.handleOpenModal = this.handleOpenModal.bind(this);
     this.handleCloseModal = this.handleCloseModal.bind(this);
     this.handleSignoutSubmit = this.handleSignoutSubmit.bind(this);
 	}
 
   async handleOpenModal() {
-    // console.log('handleOpenModal',await NextAuth.init());
+
     this.setState({
-      session: this.state.session || await NextAuth.init(),
-      providers: this.state.providers || await NextAuth.providers(),
+      session: this.props.session || await NextAuth.init(),
+      providers: this.props.providers || await NextAuth.providers(),
       showModal: true
     });
   }
@@ -48,7 +54,7 @@ export default class Header extends React.Component {
   }
 
   render() {
-    console.log('Header',this.props);
+
     return (
       <Wrapper>
           <Link href="/">
@@ -70,7 +76,7 @@ export default class Header extends React.Component {
 
             <form id="signout" method="post" action="/auth/signout" onSubmit={this.handleSignoutSubmit}>
               <input name="_csrf" type="hidden" value={this.state.session.csrfToken}/>
-              <button type="submit" block className="pl-4 rounded-0 text-left dropdown-item"><span className="icon ion-md-log-out mr-1"></span> Sign out</button>
+              <button type="submit" className="pl-4 rounded-0 text-left dropdown-item"><span className="icon ion-md-log-out mr-1"></span> Sign out</button>
             </form>
 
         </ReactModal>
@@ -79,22 +85,42 @@ export default class Header extends React.Component {
   }
 }
 
+export function mapDispatchToProps(dispatch) {
+  return {};
+}
+
+const mapStateToProps = createStructuredSelector({
+  // categories: makeSelectCategories(),
+  providers: makeSelectProviders(),
+  session: makeSelectSession()
+});
+
+const withConnect = connect(
+  mapStateToProps,
+  mapDispatchToProps,
+);
+
+export default compose(
+  withConnect,
+)(Header);
+
 
 
 export class SignInButtons extends React.Component {
   render() {
+    const { providers } = this.props
     return (
       <React.Fragment>
         {
-          Object.keys(this.props.providers).map((provider, i) => {
-            if (!this.props.providers[provider].signin) return null
+          Object.keys(providers).map((provider, i) => {
+            if (!providers[provider].signin) return null
 
             return (
               <p key={i}>
-                <a className="btn btn-block btn-outline-secondary" href={this.props.providers[provider].signin}>
+                <a className="btn btn-block btn-outline-secondary" href={providers[provider].signin}>
                   Sign in with {provider}
                 </a>
-                {this.props.providers[provider].signin}
+                {providers[provider].signin}
               </p>
               )
           })
