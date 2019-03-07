@@ -3,7 +3,6 @@ import Layout from '../components/MyLayout'
 import fetch from 'isomorphic-unfetch'
 import { NextAuth } from 'next-auth/client'
 
-
 export default class Admin extends React.Component {
   static async getInitialProps({ ctx, req }) {
 
@@ -27,8 +26,9 @@ export default class Admin extends React.Component {
   adminAccessOnly() {
     return (
       <div className="text-center pt-5 pb-5">
-        <h1 className="display-4 mb-5">Access Denied</h1>
-        <p className="lead">You must be signed in as an administrator to access this page.</p>
+        <h1 className="display-4 mb-5">Admin Access Only</h1>
+        <pre>{JSON.stringify(this.props.session, null, 4)}</pre>
+
       </div>
     )
   }
@@ -36,7 +36,7 @@ export default class Admin extends React.Component {
   render() {
     console.log(this.props);
     if (!this.props.session.user || this.props.session.user.admin !== true)
-      return this.adminAccessOnly()
+      return <Layout>{this.adminAccessOnly()}</Layout>
     return <p>Admin</p>
   }
 
