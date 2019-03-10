@@ -14,7 +14,6 @@ const Listing = (props) => {
 Listing.getInitialProps = async function ({ ctx }) {
   const { store, isServer } = ctx
   const { originalUrl } = ctx.req || {}
-  console.log(ctx.req);
   const { id } = ctx.query
   store.dispatch(fetchListingById(id))
   return { id, originalUrl }

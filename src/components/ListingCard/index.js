@@ -25,9 +25,8 @@ class ListingCard extends React.PureComponent {
     // return <p>XX</p>   href={`/listing/${this.props.product.id}`}
     return (<CardHolder>
         <Link
-              as={`/listing/${this.props.product.id}/${this.props.product.url}`}
-              href={{ pathname: '/listing', query: { id: this.props.product.id } }}
-
+          as={`/listing/${this.props.product.id}/${this.props.product.url}`}
+          href={{ pathname: '/listing', query: { id: this.props.product.id } }}
         >
           <a>
             <ListingCardImg>

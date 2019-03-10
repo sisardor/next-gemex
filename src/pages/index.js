@@ -1,88 +1,26 @@
-import Link from 'next/link'
-import { connect } from 'react-redux';
-import { compose } from 'redux';
-import fetch from 'isomorphic-unfetch'
-import injectReducer from 'utils/injectReducer';
 import { fetchListings } from 'containers/HomePage/actions';
+import { fetchCategoryProducts } from 'containers/MarketView/actions'
 import Layout from 'components/MyLayout';
 import HomePage from 'containers/HomePage/Loadable';;
-
+import { NextAuth } from 'next-auth/client'
 
 class Index extends React.Component {
-  static async getInitialProps (props) {
-    const { store, isServer } = props.ctx
+  static async getInitialProps ({ctx, req}) {
+    const { store, isServer } = ctx
+    let path = ctx.query.path
     store.dispatch(fetchListings())
-    return { isServer }
+    store.dispatch(fetchCategoryProducts(path))
+    const session = await NextAuth.init({req});
+    return { isServer, session }
   }
 
-  componentDidMount () {
-    // this.props.dispatch(fetchListings())
-  }
-  fetchTest = () => {
-    this.props.dispatch(fetchListings())
-  }
   render () {
     return (
       <Layout>
-        {/*<h1>Batman TV Shows</h1>
-        <form method='GET' action='/greeting'>
-          Name: <input name='name' />
-          <input type='submit' />
-        </form>
-        <button onClick={() => this.fetchTest()}>Fetch</button>*/}
         <HomePage />
       </Layout>
     );
   }
 }
 
-
-
-
-
-
-import { fromJS } from 'immutable';
-import { createStructuredSelector } from 'reselect';
-import injectSaga from '../utils/injectSaga';
-// import reducer from 'containers/HomePage/reducer';
-
-const initialState = fromJS({});
-
-function adminPageReducer(state = initialState, action) {
-  switch (action.type) {
-    case 'DEFAULT_ACTION':
-      return state;
-    default:
-      return state;
-  }
-}
-
-function* defaultSaga() {
-  // See example in containers/HomePage/saga.js
-}
-
-const mapStateToProps = createStructuredSelector({
-  // adminpage: makeSelectAdminPage(),
-});
-
-function mapDispatchToProps(dispatch) {
-  return {
-    dispatch,
-  };
-}
-
-const withConnect = connect(
-  mapStateToProps,
-  mapDispatchToProps,
-);
-
-// const withReducer = injectReducer({ key: 'home', reducer });
-// const withSaga = injectSaga({ key: 'adminPage', saga: defaultSaga });
-
-
-
-export default compose(
-  // withReducer,
-  // withSaga,
-  withConnect,
-)(Index)
+export default Index

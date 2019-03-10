@@ -16,16 +16,16 @@ const CardHolder = styled.div`
 `;
 
 const ListingCardImg = styled.div`
-// border: 1px solid;
-position: relative;
-border-radius: 2px;
-margin-bottom: 6px;
-transition: box-shadow 0.2s ease-in-out;
-box-sizing: border-box;
+  // border: 1px solid;
+  position: relative;
+  border-radius: 2px;
+  margin-bottom: 6px;
+  transition: box-shadow 0.2s ease-in-out;
+  box-sizing: border-box;
 
-&:hover {
-  box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.2);
-}
+  &:hover {
+    box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.2);
+  }
 `;
 
 const PlaceHolder = styled.div`
@@ -45,17 +45,16 @@ const PlaceHolder = styled.div`
   // }
 `;
 const PlaceHolderContent = styled.div`
-bottom: 0;
-left: 0;
-position: absolute;
-right: 0;
-top: 0;
-transition: opacity 0.25s ease-out;
+  bottom: 0;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  transition: opacity 0.25s ease-out;
 `;
 
 const A = styled.a`
   text-decoration: none !important;
-
 `;
 const P = styled.p`
   overflow: hidden;

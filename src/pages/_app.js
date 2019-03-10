@@ -7,6 +7,7 @@ import withRedux from 'next-redux-wrapper'
 import withReduxSaga from 'next-redux-saga'
 import configureStore from '../configureStore';
 import { fetchCategories } from 'components/TopNavigation/actions';
+import { fetchAuthProviders, fetchAuthSession } from 'containers/HomePage/actions';
 
 const DEFAULT_SEO = {
   title: 'Gemex home page',
@@ -19,8 +20,6 @@ const DEFAULT_SEO = {
     url: 'https://localhost:3000',
     title: 'Gemex',
     description: 'Gemex website sell geme stones',
-    defaultImageWidth: 340,
-    defaultImageHeight: 270,
     images: [
       {
         url: 'https://i.etsystatic.com/14828304/c/806/640/118/372/il/385d11/1399052046/il_340x270.1399052046_oj6y.jpg',
@@ -47,7 +46,8 @@ class MyApp extends App {
       pageProps = await Component.getInitialProps({ctx})
     }
     ctx.store.dispatch(fetchCategories())
-
+    ctx.store.dispatch(fetchAuthProviders())
+    ctx.store.dispatch(fetchAuthSession())
     return { pageProps }
   }
 

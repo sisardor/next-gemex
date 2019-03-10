@@ -31,3 +31,20 @@ export function productsLoaded(products) {
 export function fetchListings () {
   return {type: cons.FETCH_LISTINGS}
 }
+
+export function fetchAuthProviders () {
+  return {type: cons.FETCH_AUTH_PROVIDERS}
+}
+
+export function authProvidersLoaded (providers) {
+  return {type: cons.AUTH_PROVIDERS_LOADED, providers}
+}
+
+
+export function fetchAuthSession () {
+  return {type: cons.FETCH_AUTH_SESSION}
+}
+
+export function authSessionLoaded (session) {
+  return {type: cons.AUTH_SESSION_LOADED, session}
+}
