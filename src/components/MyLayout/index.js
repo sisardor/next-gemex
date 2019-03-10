@@ -1,20 +1,20 @@
 import Header from '../Header/Loadable'
 import GlobalStyle from '../../global-styles';
 import TopNavigation from 'components/TopNavigation';
+import styled from 'styled-components';
 
-const layoutStyle = {
-  margin: 20,
-  padding: 20,
-  border: '1px solid #DDD'
-}
+const Div = styled.div`
+  max-width: 1400px;
+  margin: 0 auto;
+`
 
 const Layout = (props) => (
-  <div style={layoutStyle}>
+  <Div>
     <Header />
     <TopNavigation />
-    {props.children}
+      {props.children}
     <GlobalStyle/>
-  </div>
+  </Div>
 )
 
 export default Layout

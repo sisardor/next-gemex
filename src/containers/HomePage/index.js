@@ -13,14 +13,15 @@ import React from 'react';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
-import injectSaga from 'utils/injectSaga';
 import injectReducer from 'utils/injectReducer';
 import ListingGrid from 'components/ListingGrid';
 import ListingCard from 'components/ListingCard';
+import Breadcrumbs from 'components/Breadcrumbs';
+import SidebarFilterGroup from 'components/SidebarFilterGroup';
 import Wrapper from './Wrapper';
 import reducer from './reducer';
+import makeSelectMarketView from 'containers/MarketView/selectors';
 import { makeSelectProducts, makeSelectProviders } from './selectors';
-import { NextAuth } from 'next-auth/client'
 
 /* eslint-disable react/prefer-stateless-function */
 export class HomePage extends React.Component {
@@ -29,17 +30,23 @@ export class HomePage extends React.Component {
   render() {
     const { products = [], providers } = this.props
     console.log('HomePage#render', providers);
-    const list = products.map((product, index) =>{
+    const list = products.map((product) =>{
       return <ListingCard product={product.toJS()} />
     });
+    let breadcrumbs = [], product_count = null
+    if (this.props.marketview) {
+      breadcrumbs = this.props.marketview.get('breadcrumbs') || []
+      product_count = this.props.marketview.get('product_count')
+    }
 
     return (
-      <Wrapper className="container">
-        <main className="content">
-          {JSON.stringify(providers)}
-          <div className="grid-container" style={{width:1096}}><ListingGrid list={list}/></div>
-        </main>
-      </Wrapper>
+      <div>
+        <Breadcrumbs breadcrumbs={breadcrumbs} count={product_count}/>
+        <Wrapper className="container">
+          <SidebarFilterGroup />
+          <ListingGrid list={list}/>
+        </Wrapper>
+      </div>
     );
   }
 }
@@ -57,7 +64,8 @@ export function mapDispatchToProps(dispatch) {
 const mapStateToProps = createStructuredSelector({
   // repos: makeSelectRepos(),
   products: makeSelectProducts(),
-  providers: makeSelectProviders()
+  providers: makeSelectProviders(),
+  marketview: makeSelectMarketView(),
   // loading: makeSelectLoading(),
   // error: makeSelectError(),
 });

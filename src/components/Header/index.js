@@ -57,28 +57,37 @@ class Header extends React.Component {
 
     return (
       <Wrapper>
-          <Link href="/">
-            <a style={linkStyle}>Home</a>
-          </Link>
-          <Link href="/admin">
-            <a style={linkStyle}>Admin</a>
-          </Link>
-          <Link href="/about">
-            <a style={linkStyle}>About</a>
-          </Link>
-          <button onClick={this.handleOpenModal}>Login/Singup</button>
-          <ReactModal
-             isOpen={this.state.showModal}
-             contentLabel="Minimal Modal Example"
-          >
-            <button onClick={this.handleCloseModal}>Close Modal</button>
-            <SignInButtons providers={this.state.providers}/>
+        <ul>
+          <li>
+            <Link href="/">
+              <a style={linkStyle}>Home</a>
+            </Link>
+          </li>
+          <li>
+            <Link href="/admin">
+              <a style={linkStyle}>Admin</a>
+            </Link>
+          </li>
+          <li>
+            <Link href="/about">
+              <a style={linkStyle}>About</a>
+            </Link>
+          </li>
+          <li>
+            <button onClick={this.handleOpenModal}>Login/Singup</button>
+          </li>
+        </ul>
+        <ReactModal
+           isOpen={this.state.showModal}
+           contentLabel="Minimal Modal Example"
+        >
+          <button onClick={this.handleCloseModal}>Close Modal</button>
+          <SignInButtons providers={this.state.providers}/>
 
-            <form id="signout" method="post" action="/auth/signout" onSubmit={this.handleSignoutSubmit}>
-              <input name="_csrf" type="hidden" value={this.state.session.csrfToken}/>
-              <button type="submit" className="pl-4 rounded-0 text-left dropdown-item"><span className="icon ion-md-log-out mr-1"></span> Sign out</button>
-            </form>
-
+          <form id="signout" method="post" action="/auth/signout" onSubmit={this.handleSignoutSubmit}>
+            <input name="_csrf" type="hidden" value={this.state.session.csrfToken}/>
+            <button type="submit" className="pl-4 rounded-0 text-left dropdown-item"><span className="icon ion-md-log-out mr-1"></span> Sign out</button>
+          </form>
         </ReactModal>
       </Wrapper>
     );

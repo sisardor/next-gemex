@@ -24,5 +24,12 @@ const GlobalStyle = createGlobalStyle`
   ul {
     list-style: none;
   }
+  // #__next * {
+  //   -webkit-box-sizing: border-box;
+  //   -ms-box-sizing: border-box;
+  //   -moz-box-sizing: border-box;
+  //   -o-box-sizing: border-box;
+  //   box-sizing: border-box;
+  // }
 `;
 export default GlobalStyle;

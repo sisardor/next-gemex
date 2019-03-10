@@ -43,6 +43,11 @@ const Span = styled.span`
 function Breadcrumbs(props) {
   let count = <span>({props.count} items)</span>
   let lis = props.breadcrumbs.map((item, i) => {
+    console.log('Length',  props.breadcrumbs.size - 1, i);
+    if (props.breadcrumbs.size - 1 === i) {
+      return (<Li key={i}><Span/><a>{item.get('name')}</a></Li>)
+    }
+
     let path = item.get('path')
     return (<Li key={i}>
       <Span/>
@@ -54,6 +59,7 @@ function Breadcrumbs(props) {
       </Link>
     </Li>);
   })
+
   return (
     <Div>
       <Ul>
