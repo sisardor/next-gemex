@@ -19,8 +19,47 @@ import makeSelectListingView from './selectors';
 import reducer from './reducer';
 import messages from './messages';
 
+import styled from 'styled-components';
+
+
+const Button = styled.button`
+  position: absolute;
+  left: 0;
+  transform: translateY(-50%);
+  position: relative;
+  top: 50%
+`
+const ButtonLeft = styled.button`
+  position: absolute;
+  transform: translateY(-50%);
+  position: relative;
+  top: 50%
+`
+
+const SpanIcon = styled.span`
+  font-size: 24px;
+
+  display: inline-block;
+  fill: currentColor;
+  height: 24px;
+  vertical-align: middle;
+  width: 24px;
+
+  height: 36px;
+  width: 36px;
+`
+
+const DivCarousel = styled.div`
+  text-align: center;
+`
 /* eslint-disable react/prefer-stateless-function */
 export class ListingView extends React.Component {
+  navLeft = () => {
+    console.log('left');
+  }
+  navRight = () => {
+    console.log('right');
+  }
   render() {
 
     let product = {}, name=''
@@ -61,7 +100,29 @@ export class ListingView extends React.Component {
           }
         }} />
         <h1>{product.name}</h1>
-        <img src={product.images} alt={product.name}/>
+        <DivCarousel id="listing-page-image-carousel" className="">
+          <ul id="image-carousel" className="list-unstyled image-carousel">
+            <li><img src={'https://i.etsystatic.com/5473706/r/il/c0c0f4/522347966/il_794xN.522347966_kplm.jpg'} alt={'product.name'}/></li>
+          </ul>
+          <Button className="">
+            <SpanIcon>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                <path d="M16,21a0.994,0.994,0,0,1-.664-0.253L5.5,12l9.841-8.747a1,1,0,0,1,1.328,1.494L8.5,12l8.159,7.253A1,1,0,0,1,16,21Z"></path>
+              </svg>
+            </SpanIcon>
+          </Button>
+          <ButtonLeft className="">
+            <SpanIcon>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                <path d="M8,21a1,1,0,0,1-.664-1.747L15.5,12,7.336,4.747A1,1,0,0,1,8.664,3.253L18.5,12,8.664,20.747A0.994,0.994,0,0,1,8,21Z">
+                </path>
+              </svg>
+            </SpanIcon>
+          </ButtonLeft>
+        </DivCarousel>
+
+
+        {/*<img src={product.images} alt={product.name}/>
         <p>{product.price}</p>
         <Link
           as={`/cat/${path.replace(/\./g, '/')}`}
@@ -71,7 +132,7 @@ export class ListingView extends React.Component {
           {path}
           </a>
         </Link>
-        <pre>{JSON.stringify(product,null, 2)}</pre>
+        <pre>{JSON.stringify(product,null, 2)}</pre>*/}
       </div>
     );
   }
