@@ -90,7 +90,7 @@ module.exports = () => {
   .then(usersCollection => {
     return Promise.resolve({
       // If a user is not found find() should return null (with no error).
-      find: ({id, email, emailToken, provider} = {}) => {
+      findX: ({id, email, emailToken, provider} = {}) => {
         let query = {}
 
         // Find needs to support looking up a user by ID, Email, Email Token,
@@ -119,7 +119,7 @@ module.exports = () => {
       // with the users account on the oAuth service they are signing in with.
       //
       // You can use this to capture profile.avatar, profile.location, etc.
-      insert: (user, oAuthProfile) => {
+      insertX: (user, oAuthProfile) => {
         return new Promise((resolve, reject) => {
           usersCollection.insert(user, (err, response) => {
             if (err) return reject(err)
