@@ -47,7 +47,7 @@ class MyApp extends App {
     }
     ctx.store.dispatch(fetchCategories())
     ctx.store.dispatch(fetchAuthProviders())
-    ctx.store.dispatch(fetchAuthSession())
+    // ctx.store.dispatch(fetchAuthSession())
     return { pageProps }
   }
 

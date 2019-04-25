@@ -12,10 +12,21 @@ const makeSelectProducts = () =>
   createSelector(selectHome, homeState => homeState.get('products'));
 
 const makeSelectProviders = () =>
-  createSelector(auth, state => state.get('providers').toJS());
+  createSelector(auth, state => {
+    if (state.has('providers'))
+      return state.get('providers').toJS()
+    else
+      return {}
+  });
 
 const makeSelectSession = () =>
-  createSelector(auth, state => state.get('session').toJS());
+  createSelector(auth, state => {
+    // console.log('state',state);
+    if (state.has('session'))
+      return state.get('session').toJS()
+    else
+      return {}
+  });
 
 
 export { selectHome, auth, makeSelectProducts,

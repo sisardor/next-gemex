@@ -63,6 +63,13 @@ app.prepare()
     app.render(req, res, actualPage, queryParams)
   })
 
+  server.get('/your/shops/:shopId', (req, res) => {
+    const actualPage = '/shop'
+    console.log('your/shops/:id');
+    let queryParams = {}
+    app.render(req, res, actualPage, queryParams);
+  })
+
   server.use('/api', proxy({ target: 'http://localhost:4000', changeOrigin: true }))
 
   server.get('*', (req, res) => handle(req, res))

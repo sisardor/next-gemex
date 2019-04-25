@@ -85,7 +85,7 @@ export class ListingView extends React.Component {
     })
   }
   render() {
-    console.log('index', this.state.index);
+    // console.log('index', this.state.index);
     let product = {}, name=''
     if (!this.props.listingView.isLoading) {
       product = this.props.listingView[this.props.productId];

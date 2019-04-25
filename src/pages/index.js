@@ -9,8 +9,11 @@ class Index extends React.Component {
     const { store, isServer } = ctx
     let path = ctx.query.path
     store.dispatch(fetchListings())
-    store.dispatch(fetchCategoryProducts(path))
+    // console.log('ctx.query',ctx.query);
+    // console.log('path', path);
+    // store.dispatch(fetchCategoryProducts(path))
     const session = await NextAuth.init({req});
+    console.log('session', session);
     return { isServer, session }
   }
 
