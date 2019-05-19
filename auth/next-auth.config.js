@@ -41,6 +41,7 @@ module.exports = () => {
   // an object with the functions needed for authentication.
   return nextAuthFunctions()
   .then(functions => {
+    console.log(functions)
     return new Promise((resolve, reject) => {
       // This is the config block we return, ready to be passed to NextAuth
       resolve({

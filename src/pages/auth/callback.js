@@ -4,11 +4,12 @@ import Link from 'next/link'
 import Router from 'next/router'
 import Cookies from 'universal-cookie'
 import { NextAuth } from 'next-auth/client'
+import redirect from '../../lib/redirect'
 
 export default class extends React.Component {
-  static async getInitialProps({req}) {
+  static async getInitialProps({ctx, req}) {
     const session = await NextAuth.init({force: true, req: req})
-    console.log('ath/callback',session);
+    console.log('auth/callback',session);
     const cookies = new Cookies((req && req.headers.cookie) ? req.headers.cookie : null)
     // If the user is signed in, we look for a redirect URL cookie and send
     // them to that page, so that people signing in end up back on the page they
@@ -21,7 +22,7 @@ export default class extends React.Component {
       // Allow relative paths only - strip protocol/host/port if they exist.
       redirectTo = redirectTo.replace( /^[a-zA-Z]{3,5}\:\/{2}[a-zA-Z0-9_.:-]+\//, '')
     }
-
+    redirect(ctx, redirectTo)
     return {
       session: session,
       redirectTo: redirectTo

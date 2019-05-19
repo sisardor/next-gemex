@@ -32,8 +32,10 @@ export function* getAuthSession() {
   const requestURL = `${API_URL}/auth/session`;
   try {
     const session = yield call(request, requestURL);
+    console.log('saga.js getAuthSession', session);
     yield put(authSessionLoaded(session));
   } catch (err) {
+    consle.error(err)
     // yield put(repoLoadingError(err));
   }
 }

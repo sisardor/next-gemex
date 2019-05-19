@@ -74,6 +74,11 @@ class Header extends React.Component {
             </Link>
           </li>
           <li>
+            <Link href="/your/shops/havo-jewlry">
+              <a style={linkStyle}>Shop</a>
+            </Link>
+          </li>
+          <li>
             <button onClick={this.handleOpenModal}>Login/Singup</button>
           </li>
         </ul>
